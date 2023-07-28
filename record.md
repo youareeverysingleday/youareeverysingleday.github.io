@@ -9,3 +9,6 @@
 5. Pelican
    1. 入门参考。它是使用python编译的，并且支持markdown。<https://zhuanlan.zhihu.com/p/55603083>。
    2. 参考2<https://zhuanlan.zhihu.com/p/614277442>。
+   3. 操作参考<https://jlhxxxx.github.io/pelican-github.html>。
+   4. 中文pelican手册<https://www.osgeo.cn/pelican/plugins.html>。
+6. rtd模板<https://github.com/readthedocs/sphinx_rtd_theme>。
