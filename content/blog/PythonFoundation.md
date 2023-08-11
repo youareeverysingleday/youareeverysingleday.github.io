@@ -5,9 +5,6 @@ Tags: blog,Python
 Slug: python-foundation
 Author: youareeverysingleday
 
-# python 基础知识
-
-查漏补缺。
 
 ## 1 Python编程基础概念
 

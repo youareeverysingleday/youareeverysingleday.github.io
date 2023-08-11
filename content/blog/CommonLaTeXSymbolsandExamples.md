@@ -5,8 +5,6 @@ Tags: blog,LaTex
 Slug: Common-latex-symbols
 Author: youareeverysingleday
 
-# 常用Latex符号或举例
-
 ## 1. 参考
 
 |编号|参考|

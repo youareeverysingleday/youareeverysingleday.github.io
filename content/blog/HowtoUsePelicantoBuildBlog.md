@@ -5,8 +5,6 @@ Tags: blog,pelican
 Slug: pelican-brochure
 Author: youareeverysingleday
 
-# HowtoUsePelicantoBuildBlog
-
 ## experience
 
 1. 常用命令，
@@ -56,11 +54,16 @@ Author: youareeverysingleday
    3. 通过<https://www.osgeo.cn/pelican/pelican-themes.html>查看安装theme的命令。
    4. 将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。
 3. 可以使用根目录下的某个文件夹作为github pages的发布路径。目前github pages只能使用docs/作为发布路径。。"Optionally, use the folder dropdown menu to select a folder for your publishing source."
+4. publishconf.py和pelicanconf.py的区别？也就是说一般都在pelicanconf.py中进行配置。
+   1. 在publishconf.py中定义的内容将覆盖pelicanconf.py中的相同定义。作为Pelican设置文件首先将分为两部分，考虑两种主要的操作模式：本地开发和生产部署（分别为pelicanconf.py和publishconf.py）。不建议将GOOGLE_ANALYTICS从pelicanconf.py移动publishconf.py到。在本地开发时，Google Analytics 和 Disqus 等设置在设计上pelicanconf.py将被故意排除。pelicanconf.py在本地测试中包含这些设置可能会产生不利影响：不准确的站点统计数据、虚假评论线程以及其他意外的副作用。但请注意，publishconf.py仅在两种情况下使用：
+   2. 当您使用make publish（或其他 make 命令之一）生成站点时。
+   3. 当您明确指定它作为要使用的配置文件时（即pelican -s publishconf.py content_dir）。因此，如果您使用命令生成站点pelican，并且没有明确指定您的配置文件，则只会pelicanconf.py使用；因此你需要将GOOGLE_ANALYTICS变量设置在那里。
 
 ## problems
 
 1. 无法显示latex公式。
-2. gum样式没有显示category和page。
+2. gum样式没有显示category、page和tags。
+   1. 使用tags需要使用tag_cloud插件。
 
 ## references
 

@@ -4,6 +4,8 @@
 
         <title>如何使用Pelican创建一个博客</title>
         <meta charset="utf-8" />
+        <link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Full Atom Feed" />
+        <link href="https://youareeverysingleday.github.io/feeds/commonknowledge.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Categories Atom Feed" />
 
 
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
@@ -28,7 +30,7 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="https://youareeverysingleday.github.io/">youareeverysingleday.Blog <strong></strong></a></h1>
+                  <h1><a href="https://youareeverysingleday.github.io/">Coder <strong>You are every single day.</strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
@@ -62,8 +64,7 @@
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
-              <h1>HowtoUsePelicantoBuildBlog</h1>
-<h2>experience</h2>
+              <h2>experience</h2>
 <ol>
 <li>常用命令，</li>
 <li>命令参考<a href="https://www.osgeo.cn/pelican/">https://www.osgeo.cn/pelican/</a>。</li>
@@ -258,6 +259,26 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>4. publishconf.py和pelicanconf.py的区别？也就是说一般都在pelicanconf.py中进行配置。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 在publishconf.py中定义的内容将覆盖pelicanconf.py中的相同定义。作为Pelican设置文件首先将分为两部分，考虑两种主要的操作模式：本地开发和生产部署（分别为pelicanconf.py和publishconf.py）。不建议将GOOGLE_ANALYTICS从pelicanconf.py移动publishconf.py到。在本地开发时，Google Analytics 和 Disqus 等设置在设计上pelicanconf.py将被故意排除。pelicanconf.py在本地测试中包含这些设置可能会产生不利影响：不准确的站点统计数据、虚假评论线程以及其他意外的副作用。但请注意，publishconf.py仅在两种情况下使用：</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 当您使用make publish（或其他 make 命令之一）生成站点时。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 当您明确指定它作为要使用的配置文件时（即pelican -s publishconf.py content_dir）。因此，如果您使用命令生成站点pelican，并且没有明确指定您的配置文件，则只会pelicanconf.py使用；因此你需要将GOOGLE_ANALYTICS变量设置在那里。</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -313,6 +334,13 @@
   
 
 
+<h4>Tags</h4>
+	<ul class="blank">
+	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/latex.html">LaTex</a></li>
+	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/python.html">Python</a></li>
+	    <li class="tag-1"><a href="https://youareeverysingleday.github.io/tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/pelican.html">pelican</a></li>
+</ul>
 
 
 <nav class="widget">
