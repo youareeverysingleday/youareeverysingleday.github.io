@@ -9,11 +9,11 @@
         <!-- Mobile viewport optimized: j.mp/bplateviewport -->
         <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
-        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+        <link rel="stylesheet" type="text/css" href="https://youareeverysingleday.github.io/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="https://youareeverysingleday.github.io/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="https://youareeverysingleday.github.io/theme/pygment.css" />
 
-        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+        <script src="https://youareeverysingleday.github.io/theme/js/libs/modernizr-2.6.2.min.js"></script>
 
 
 
@@ -28,14 +28,14 @@
         <div class="row">
 
           <header id="banner" class="body">
-                  <h1><a href="/">youareeverysingleday.Blog <strong></strong></a></h1>
+                  <h1><a href="https://youareeverysingleday.github.io/">youareeverysingleday.Blog <strong></strong></a></h1>
           </header><!-- /#banner -->
 
             <div id="navigation" class="navbar row">
               <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
              
               <ul class="columns">
-                <li><a href="/">Home</a></li>
+                <li><a href="https://youareeverysingleday.github.io/">Home</a></li>
 
 
               </ul>
@@ -49,7 +49,7 @@
 
             <header>
               <h2 class="entry-title">
-                <a href="/blog/pelican.html" rel="bookmark"
+                <a href="https://youareeverysingleday.github.io/blog/pelican.html" rel="bookmark"
                    title="Permalink to How to Use Pelican to Build Blog">How to Use Pelican to Build Blog</a></h2>
            
             </header>
@@ -58,7 +58,7 @@
                 周五 11 八月 2023
               </abbr>
               <address class="vcard author">By 
-                <a class="url fn" href="/author/youareeverysingleday.html"> youareeverysingleday</a>
+                <a class="url fn" href="https://youareeverysingleday.github.io/author/youareeverysingleday.html"> youareeverysingleday</a>
               </address>
             </footer><!-- /.post-info -->
             <div class="entry-content">
@@ -67,8 +67,8 @@
 <ol>
 <li>常用命令，</li>
 <li>命令参考<a href="https://www.osgeo.cn/pelican/">https://www.osgeo.cn/pelican/</a>。</li>
-<li>流程参考<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</li>
-</ol>
+<li>
+<p>流程参考<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</p>
 <table>
 <thead>
 <tr>
@@ -189,28 +189,25 @@
 <td>url</td>
 <td>用于此文章/页面的URL</td>
 </tr>
-<tr>
-<td>2. pelican的模板</td>
-<td></td>
-</tr>
-<tr>
-<td>1. 首先通过<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>查看模板的样式，这个里面有粗略编译之后的样式，具体的需要看代码里面的展示。</td>
-<td></td>
-</tr>
-<tr>
-<td>2. 通过<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>下载代码。</td>
-<td></td>
-</tr>
-<tr>
-<td>3. 通过<a href="https://www.osgeo.cn/pelican/pelican-themes.html">https://www.osgeo.cn/pelican/pelican-themes.html</a>查看安装theme的命令。</td>
-<td></td>
-</tr>
-<tr>
-<td>4. 将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。</td>
-<td></td>
-</tr>
 </tbody>
 </table>
+</li>
+<li>
+<p>pelicanconf.py中的配置
+      |编号|参数|说明|
+      |---|---|--- |
+      ||STATIC_PATHS = ['images']|通过上文，我们已经成功添加第一篇博客，但是很快会发现，如果你往content目录里面添加一个images文件夹存放博文的图片，你会发现pelican content并不会复制images文件夹到output目录下。这种不需要编译但又要用到的文件，我们称它为“静态文件”。pelican默认不会复制静态文件到output目录，需要我们在pelicanconf.py配置文件上面配置一下,添加该行。|
+      ||SITEURL|也要设置成Pages的地址|
+      ||||
+      ||||
+      ||||</p>
+</li>
+<li>pelican的模板</li>
+<li>首先通过<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>查看模板的样式，这个里面有粗略编译之后的样式，具体的需要看代码里面的展示。</li>
+<li>通过<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>下载代码。</li>
+<li>通过<a href="https://www.osgeo.cn/pelican/pelican-themes.html">https://www.osgeo.cn/pelican/pelican-themes.html</a>查看安装theme的命令。</li>
+<li>将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。</li>
+</ol>
 <h2>references</h2>
 <h3>放弃使用jekyll</h3>
 <ol>
@@ -224,6 +221,7 @@
 <ol>
 <li>入门参考。它是使用python编译的，并且支持markdown。<a href="https://zhuanlan.zhihu.com/p/55603083">https://zhuanlan.zhihu.com/p/55603083</a>。</li>
 <li>重要参考2<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</li>
+<li>这个参考更详细：<a href="https://maxwell-nc.github.io/blog/pelicanBuildBlog.html">https://maxwell-nc.github.io/blog/pelicanBuildBlog.html</a>。</li>
 <li>操作参考<a href="https://jlhxxxx.github.io/pelican-github.html">https://jlhxxxx.github.io/pelican-github.html</a>。</li>
 <li>中文pelican手册<a href="https://www.osgeo.cn/pelican/plugins.html">https://www.osgeo.cn/pelican/plugins.html</a>。</li>
 <li>需要添加pelican-plusin</li>
@@ -306,8 +304,8 @@
     </div>
 
 
-  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
-  <script src="/theme/js/libs/gumby.min.js"></script>
-  <script src="/theme/js/plugins.js"></script>
+  <script src="https://youareeverysingleday.github.io/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="https://youareeverysingleday.github.io/theme/js/libs/gumby.min.js"></script>
+  <script src="https://youareeverysingleday.github.io/theme/js/plugins.js"></script>
 </body>
 </html>
