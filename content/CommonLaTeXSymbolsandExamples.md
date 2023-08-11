@@ -1,4 +1,4 @@
-Title: Common LaTeX Symbols and Examples
+Title: 常用LaTex符号
 Date: 2017-05-17
 Category: Commonknowledge
 Tags: blog,LaTex

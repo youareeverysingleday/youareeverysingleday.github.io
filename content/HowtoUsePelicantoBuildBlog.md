@@ -1,4 +1,4 @@
-Title: How to Use Pelican to Build Blog
+Title: 如何使用Pelican创建一个博客
 Date: 2023-08-11
 Category: Commonknowledge
 Tags: blog,pelican
@@ -42,6 +42,7 @@ Author: youareeverysingleday
       |url|用于此文章/页面的URL|
 
    4. pelicanconf.py中的配置
+
       |编号|参数|说明|
       |---|---|--- |
       ||STATIC_PATHS = ['images']|通过上文，我们已经成功添加第一篇博客，但是很快会发现，如果你往content目录里面添加一个images文件夹存放博文的图片，你会发现pelican content并不会复制images文件夹到output目录下。这种不需要编译但又要用到的文件，我们称它为“静态文件”。pelican默认不会复制静态文件到output目录，需要我们在pelicanconf.py配置文件上面配置一下,添加该行。|
