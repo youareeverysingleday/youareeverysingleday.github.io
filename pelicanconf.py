@@ -22,7 +22,7 @@ LINKS = (('Pelican', 'https://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
+SOCIAL = (('GitHub', 'https://youareeverysingleday.github.io'),
           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
@@ -41,8 +41,8 @@ DELETE_OUTPUT_DIRECTORY = True
 # 是否在模板的菜单上显示类别。模板可能不支持此设置。
 DISPLAY_CATEGORIES_ON_MENU = True
 
-# 是否在模板的菜单上显示类别。模板可能不支持此设置。
-DISPLAY_CATEGORIES_ON_MENU = True
+# 是否在模板的菜单上显示页面。模板可能不支持此设置。
+DISPLAY_PAGES_ON_MENU = True
 
 # 降价处理器的额外配置设置。请参阅Python Markdown文档 Options section 以获取支持选项的完整列表。
 # 这个 extensions 选项将自动从 extension_configs 选择权。
@@ -57,6 +57,8 @@ MARKDOWN = {
 
 # 生成文件的输出位置。这应该与web服务器的虚拟主机根目录相对应。
 OUTPUT_PATH = 'docs/'
+
+GITHUB_URL = 'https://youareeverysingleday.github.io'
 
 # OUTPUT_PATH = '../youareeverysingleday.github.io/'
 # RELATIVE_URLS = True

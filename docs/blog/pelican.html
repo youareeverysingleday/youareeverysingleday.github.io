@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-        <title>How to Use Pelican to Build Blog</title>
+        <title>如何使用Pelican创建一个博客</title>
         <meta charset="utf-8" />
 
 
@@ -50,7 +50,7 @@
             <header>
               <h2 class="entry-title">
                 <a href="https://youareeverysingleday.github.io/blog/pelican.html" rel="bookmark"
-                   title="Permalink to How to Use Pelican to Build Blog">How to Use Pelican to Build Blog</a></h2>
+                   title="Permalink to 如何使用Pelican创建一个博客">如何使用Pelican创建一个博客</a></h2>
            
             </header>
             <footer class="post-info">
@@ -193,21 +193,74 @@
 </table>
 </li>
 <li>
-<p>pelicanconf.py中的配置
-      |编号|参数|说明|
-      |---|---|--- |
-      ||STATIC_PATHS = ['images']|通过上文，我们已经成功添加第一篇博客，但是很快会发现，如果你往content目录里面添加一个images文件夹存放博文的图片，你会发现pelican content并不会复制images文件夹到output目录下。这种不需要编译但又要用到的文件，我们称它为“静态文件”。pelican默认不会复制静态文件到output目录，需要我们在pelicanconf.py配置文件上面配置一下,添加该行。|
-      ||SITEURL|也要设置成Pages的地址|
-      ||||
-      ||||
-      ||||</p>
+<p>pelicanconf.py中的配置</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>STATIC_PATHS = ['images']</td>
+<td>通过上文，我们已经成功添加第一篇博客，但是很快会发现，如果你往content目录里面添加一个images文件夹存放博文的图片，你会发现pelican content并不会复制images文件夹到output目录下。这种不需要编译但又要用到的文件，我们称它为“静态文件”。pelican默认不会复制静态文件到output目录，需要我们在pelicanconf.py配置文件上面配置一下,添加该行。</td>
+</tr>
+<tr>
+<td></td>
+<td>SITEURL</td>
+<td>也要设置成Pages的地址</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. pelican的模板</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 首先通过<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>查看模板的样式，这个里面有粗略编译之后的样式，具体的需要看代码里面的展示。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2. 通过<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>下载代码。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 通过<a href="https://www.osgeo.cn/pelican/pelican-themes.html">https://www.osgeo.cn/pelican/pelican-themes.html</a>查看安装theme的命令。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4. 将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 可以使用根目录下的某个文件夹作为github pages的发布路径。目前github pages只能使用docs/作为发布路径。。"Optionally, use the folder dropdown menu to select a folder for your publishing source."</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </li>
-<li>pelican的模板</li>
-<li>首先通过<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>查看模板的样式，这个里面有粗略编译之后的样式，具体的需要看代码里面的展示。</li>
-<li>通过<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>下载代码。</li>
-<li>通过<a href="https://www.osgeo.cn/pelican/pelican-themes.html">https://www.osgeo.cn/pelican/pelican-themes.html</a>查看安装theme的命令。</li>
-<li>将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。</li>
-<li>可以使用根目录下的某个文件夹作为github pages的发布路径。目前github pages只能使用docs/作为发布路径。。"Optionally, use the folder dropdown menu to select a folder for your publishing source."</li>
 </ol>
 <h2>references</h2>
 <h3>放弃使用jekyll</h3>
@@ -260,7 +313,7 @@
 <nav class="widget">
   <h4>Social</h4>
   <ul class="blank">
-    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="https://youareeverysingleday.github.io">GitHub</a></li>
     <li><a href="#">Another social link</a></li>
   </ul>
 </nav>
@@ -293,6 +346,7 @@
             <div class="row">
               <ul class="socbtns">
 
+                <li><div class="btn primary"><a href="https://youareeverysingleday.github.io" target="_blank">Github</a></div></li>
 
 
 
