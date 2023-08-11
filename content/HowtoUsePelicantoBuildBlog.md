@@ -54,6 +54,7 @@ Author: youareeverysingleday
    2. 通过<https://github.com/getpelican/pelican-themes>下载代码。
    3. 通过<https://www.osgeo.cn/pelican/pelican-themes.html>查看安装theme的命令。
    4. 将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。
+3. 可以使用根目录下的某个文件夹作为github pages的发布路径。目前github pages只能使用docs/作为发布路径。。"Optionally, use the folder dropdown menu to select a folder for your publishing source."
 
 
 ## references

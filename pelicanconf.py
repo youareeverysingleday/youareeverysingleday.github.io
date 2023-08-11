@@ -27,13 +27,19 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 10
 
+# 设置使用的样式模板。
 THEME = 'theme/gum'
 # PLUGIN_PATHS = ['plugin']
 # PLUGINS = ['assets']
+# 设置需要取的静态文件（图片）的路径。
 STATIC_PATHS = ['images']
 
-# 
+# 删除输出目录，然后 all 在生成新文件之前。这有助于防止旧的、不必要的文件保留在输出中。
+# 然而， 这是一个破坏性的设置，应该非常小心地处理。
 DELETE_OUTPUT_DIRECTORY = True
+
+# 是否在模板的菜单上显示类别。模板可能不支持此设置。
+DISPLAY_CATEGORIES_ON_MENU = True
 
 # 是否在模板的菜单上显示类别。模板可能不支持此设置。
 DISPLAY_CATEGORIES_ON_MENU = True
