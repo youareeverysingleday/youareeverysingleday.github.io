@@ -241,7 +241,9 @@
 &lt;h2&gt;problems&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;无法显示latex公式。&lt;/li&gt;
-&lt;li&gt;gum样式没有显示category和page。&lt;/li&gt;
+&lt;li&gt;解决这个问题的方法不是让pelican解决的，而是通过chrome插件来解决的。使用chrome的TeX All the Things插件就可以很好的显示所有页面中的latex公式。&lt;/li&gt;
+&lt;li&gt;gum样式没有显示category、page和tags。&lt;/li&gt;
+&lt;li&gt;使用tags需要使用tag_cloud插件。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;references&lt;/h2&gt;
 &lt;h3&gt;放弃使用jekyll&lt;/h3&gt;
@@ -274,6 +276,8 @@
 &lt;li&gt;&lt;a href="https://pelicanthemes.com/notmyidea-cms-fr/"&gt;https://pelicanthemes.com/notmyidea-cms-fr/&lt;/a&gt;可以，主要是背景颜色不太喜欢。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/li&gt;
+&lt;li&gt;插件plugins：&lt;a href="https://github.com/getpelican/pelican-plugins"&gt;https://github.com/getpelican/pelican-plugins&lt;/a&gt;。很多模板都需要安装了插件之后才能使用完整功能。&lt;/li&gt;
+&lt;li&gt;markdown显示latex插件：&lt;a href="https://github.com/kitelife/pelican_plugin-latex/"&gt;https://github.com/kitelife/pelican_plugin-latex/&lt;/a&gt;。&lt;/li&gt;
 &lt;/ol&gt;</content><category term="Commonknowledge"></category><category term="blog"></category><category term="pelican"></category></entry><entry><title>Python基础知识</title><link href="https://youareeverysingleday.github.io/python-foundation.html" rel="alternate"></link><published>2022-08-19T00:00:00+02:00</published><updated>2022-08-19T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2022-08-19:/python-foundation.html</id><summary type="html">&lt;h2&gt;1 Python编程基础概念&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;5种基本对象类型。&lt;/li&gt;

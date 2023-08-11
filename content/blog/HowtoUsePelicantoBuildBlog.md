@@ -62,6 +62,8 @@ Author: youareeverysingleday
 ## problems
 
 1. 无法显示latex公式。
+   1. 解决这个问题的方法不是让pelican解决的，而是通过chrome插件来解决的。使用chrome的TeX All the Things插件就可以很好的显示所有页面中的latex公式。
+   2. 但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。
 2. gum样式没有显示category、page和tags。
    1. 使用tags需要使用tag_cloud插件。
 
@@ -95,4 +97,6 @@ Author: youareeverysingleday
       5. <https://pelicanthemes.com/foundation-default-colours/>可以。但是没有分类在两边。
       6. <https://pelicanthemes.com/bootstrap/category/misc.html>可以。但是没有分类在两边。
       7. <https://pelicanthemes.com/notmyidea-cms-fr/>可以，主要是背景颜色不太喜欢。
+7. 插件plugins：<https://github.com/getpelican/pelican-plugins>。很多模板都需要安装了插件之后才能使用完整功能。
+   1. markdown显示latex插件：<https://github.com/kitelife/pelican_plugin-latex/>。
 
