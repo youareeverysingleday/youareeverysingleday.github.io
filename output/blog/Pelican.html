@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>How to Use Pelican to Build Blog</title>
+        <meta charset="utf-8" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="/theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/pygment.css" />
+
+        <script src="/theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="/">youareeverysingleday.Blog <strong></strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="/">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="/Blog/Pelican.html" rel="bookmark"
+                   title="Permalink to How to Use Pelican to Build Blog">How to Use Pelican to Build Blog</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-08-11T00:00:00+02:00">
+                周五 11 八月 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="/author/youareeverysingleday.html"> youareeverysingleday</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h1>HowtoUsePelicantoBuildBlog</h1>
+<h2>experience</h2>
+<ol>
+<li>常用命令，</li>
+<li>命令参考<a href="https://www.osgeo.cn/pelican/">https://www.osgeo.cn/pelican/</a>。</li>
+<li>流程参考<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>命令</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>pelican-quickstart</td>
+<td>填写pelican基本信息。后期可以通过pelicanconf.py修改。</td>
+<td>进入页面目录</td>
+</tr>
+<tr>
+<td>2</td>
+<td>pelican content</td>
+<td>生成网站。</td>
+<td>需要content目录下已经有按照规则撰写的markdown文档。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>pelican --listen</td>
+<td>打开新的终端会话，导航到项目根目录，然后运行以下命令以启动Pelican的web服务器。</td>
+<td>CTRL+C退出的时候反应会比较慢。</td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3. 创建的markdown文档开头的格式及说明：</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>文章或页的标题</td>
+</tr>
+<tr>
+<td>date</td>
+<td>出版日期（例如。， YYYY-MM-DD HH:SS ）</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>修改日期（例如。， YYYY-MM-DD HH:SS ）</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>内容标记，用逗号分隔</td>
+</tr>
+<tr>
+<td>keywords</td>
+<td>内容关键字，用逗号分隔（仅限HTML内容）</td>
+</tr>
+<tr>
+<td>category</td>
+<td>内容类别（仅一个-不是多个）</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>URL和翻译中使用的标识符</td>
+</tr>
+<tr>
+<td>author</td>
+<td>内容作者，当只有一个时</td>
+</tr>
+<tr>
+<td>authors</td>
+<td>当有多个</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>索引页内容简述</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>内容语言ID (en ， fr 等）</td>
+</tr>
+<tr>
+<td>translation</td>
+<td>如果内容是另一个的翻译 (true 或 false ）</td>
+</tr>
+<tr>
+<td>status</td>
+<td>内容状态： draft ， hidden 或 published</td>
+</tr>
+<tr>
+<td>template</td>
+<td>用于生成内容的模板的名称（不带扩展名）</td>
+</tr>
+<tr>
+<td>save_as</td>
+<td>将内容保存到此相对文件路径</td>
+</tr>
+<tr>
+<td>url</td>
+<td>用于此文章/页面的URL</td>
+</tr>
+<tr>
+<td>2. pelican的模板</td>
+<td></td>
+</tr>
+<tr>
+<td>1. 首先通过<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>查看模板的样式，这个里面有粗略编译之后的样式，具体的需要看代码里面的展示。</td>
+<td></td>
+</tr>
+<tr>
+<td>2. 通过<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>下载代码。</td>
+<td></td>
+</tr>
+<tr>
+<td>3. 通过<a href="https://www.osgeo.cn/pelican/pelican-themes.html">https://www.osgeo.cn/pelican/pelican-themes.html</a>查看安装theme的命令。</td>
+<td></td>
+</tr>
+<tr>
+<td>4. 将下载下来的模板代码拷贝到python安装库目录下的文件夹中。相对Python的目录为：Python\Lib\site-packages\pelican\themes。直接复制到该目录下之后，通过pelican-themes -v -l就可以看到安装好的模板了。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>references</h2>
+<h3>放弃使用jekyll</h3>
+<ol>
+<li>简单页面部署<a href="https://zhuanlan.zhihu.com/p/28321740">https://zhuanlan.zhihu.com/p/28321740</a>。</li>
+<li>部署能解析markdown的blog<a href="https://zhuanlan.zhihu.com/p/102346113">https://zhuanlan.zhihu.com/p/102346113</a>。</li>
+<li>jekyll多种模板<a href="http://jekyllthemes.org/">http://jekyllthemes.org/</a>。</li>
+<li>HTML5静态页面模板<a href="https://html5up.net/">https://html5up.net/</a>。</li>
+<li>rtd模板<a href="https://github.com/readthedocs/sphinx_rtd_theme">https://github.com/readthedocs/sphinx_rtd_theme</a>。</li>
+</ol>
+<h3>pelican</h3>
+<ol>
+<li>入门参考。它是使用python编译的，并且支持markdown。<a href="https://zhuanlan.zhihu.com/p/55603083">https://zhuanlan.zhihu.com/p/55603083</a>。</li>
+<li>重要参考2<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</li>
+<li>操作参考<a href="https://jlhxxxx.github.io/pelican-github.html">https://jlhxxxx.github.io/pelican-github.html</a>。</li>
+<li>中文pelican手册<a href="https://www.osgeo.cn/pelican/plugins.html">https://www.osgeo.cn/pelican/plugins.html</a>。</li>
+<li>需要添加pelican-plusin</li>
+<li>添加了assets始终报错：CRITICAL UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb2 in position 8: invalid     <strong>init</strong>.py:566                    start byte</li>
+<li>模板参考：</li>
+<li>展示：<a href="https://pelicanthemes.com/">https://pelicanthemes.com/</a>。</li>
+<li>代码：<a href="https://github.com/getpelican/pelican-themes">https://github.com/getpelican/pelican-themes</a>。</li>
+<li>有几个备选的模板，其中选中<a href="https://pelicanthemes.com/pelican-twitchy/">https://pelicanthemes.com/pelican-twitchy/</a>。<ol>
+<li><a href="https://pelicanthemes.com/gum/">https://pelicanthemes.com/gum/</a>可以。首要备选。</li>
+<li><a href="https://pelicanthemes.com/dev-random3/">https://pelicanthemes.com/dev-random3/</a>可以，比较直接。</li>
+<li><a href="https://pelicanthemes.com/relapse/">https://pelicanthemes.com/relapse/</a>可以。</li>
+<li><a href="https://pelicanthemes.com/mg/">https://pelicanthemes.com/mg/</a>这个搜索框没有作用。还比较简洁。</li>
+<li><a href="https://pelicanthemes.com/foundation-default-colours/">https://pelicanthemes.com/foundation-default-colours/</a>可以。但是没有分类在两边。</li>
+<li><a href="https://pelicanthemes.com/bootstrap/category/misc.html">https://pelicanthemes.com/bootstrap/category/misc.html</a>可以。但是没有分类在两边。</li>
+<li><a href="https://pelicanthemes.com/notmyidea-cms-fr/">https://pelicanthemes.com/notmyidea-cms-fr/</a>可以，主要是背景颜色不太喜欢。</li>
+</ol>
+</li>
+</ol>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+  
+
+
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="/theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="/theme/js/libs/gumby.min.js"></script>
+  <script src="/theme/js/plugins.js"></script>
+</body>
+</html>

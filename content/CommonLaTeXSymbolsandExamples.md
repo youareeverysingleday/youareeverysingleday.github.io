@@ -1,9 +1,9 @@
-Title: LaTxTest
+Title: Common LaTeX Symbols and Examples
 Date: 2017-05-17
-Category: test
-Tags: test
-Slug: blog/LaTxTest
-Author: coder
+Category: Commonknowledge
+Tags: Blog,LaTex
+Slug: Blog/LaTex
+Author: youareeverysingleday
 
 # 常用Latex符号或举例
 

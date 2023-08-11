@@ -27,8 +27,8 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 10
 
-# THEME = 'theme/bulrush'
-# PLUGIN_PATHS = ['plugin'] 
+THEME = 'theme/gum'
+# PLUGIN_PATHS = ['plugin']
 # PLUGINS = ['assets']
 
 # Uncomment following line if you want document-relative URLs when developing
