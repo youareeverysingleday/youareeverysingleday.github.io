@@ -2,6 +2,7 @@ Title: Python基础知识
 Date: 2022-08-19
 Category: Commonknowledge
 Tags: blog,Python
+Slug: python-foundation
 Author: youareeverysingleday
 
 # python 基础知识

@@ -2,7 +2,7 @@ Title: 如何使用Pelican创建一个博客
 Date: 2023-08-11
 Category: Commonknowledge
 Tags: blog,pelican
-Slug: blog/pelican
+Slug: pelican-brochure
 Author: youareeverysingleday
 
 # HowtoUsePelicantoBuildBlog

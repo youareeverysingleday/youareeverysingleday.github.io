@@ -2,7 +2,7 @@ Title: 常用LaTex符号
 Date: 2017-05-17
 Category: Commonknowledge
 Tags: blog,LaTex
-Slug: blog/LaTex
+Slug: Common-latex-symbols
 Author: youareeverysingleday
 
 # 常用Latex符号或举例
