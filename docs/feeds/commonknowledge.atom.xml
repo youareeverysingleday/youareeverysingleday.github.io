@@ -242,6 +242,7 @@
 &lt;ol&gt;
 &lt;li&gt;无法显示latex公式。&lt;/li&gt;
 &lt;li&gt;解决这个问题的方法不是让pelican解决的，而是通过chrome插件来解决的。使用chrome的TeX All the Things插件就可以很好的显示所有页面中的latex公式。&lt;/li&gt;
+&lt;li&gt;但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。&lt;/li&gt;
 &lt;li&gt;gum样式没有显示category、page和tags。&lt;/li&gt;
 &lt;li&gt;使用tags需要使用tag_cloud插件。&lt;/li&gt;
 &lt;/ol&gt;

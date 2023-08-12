@@ -42,13 +42,6 @@ SOCIAL = (('GitHub', 'https://youareeverysingleday.github.io'),
 
 DEFAULT_PAGINATION = 10
 
-# 设置使用的样式模板。
-THEME = 'theme/gum'
-PLUGIN_PATHS = ['plugins']
-PLUGINS = ['tag_cloud']
-# 设置需要取的静态文件（图片）的路径。
-STATIC_PATHS = ['images']
-
 # 如果未在post元数据中指定类别，请将此设置设置为 True ，
 # 并将文章组织到子文件夹中，则该子文件夹将成为您文章的类别。如果设置为 False ， DEFAULT_CATEGORY 将用作备用。
 USE_FOLDER_AS_CATEGORY = False
@@ -61,6 +54,13 @@ DISPLAY_PAGES_ON_MENU = True
 
 # 是否在模板的菜单上显示类别。模板可能不支持此设置。
 DISPLAY_CATEGORIES_ON_MENU = True
+
+# 设置使用的样式模板。
+THEME = 'theme/gum'
+PLUGIN_PATHS = ['plugins']
+PLUGINS = ['tag_cloud', 'more_categories']
+# 设置需要取的静态文件（图片）的路径。
+STATIC_PATHS = ['images']
 
 # 包含日志记录级别的元组列表（最多 warning )以及要忽略的信息。
 import logging
