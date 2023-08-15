@@ -289,7 +289,7 @@ Author: youareeverysingleday
          3. lambda之后的冒号表示return的值。也就是说lambda类似于有return的函数。
    5. 函数结果返回return和yield
       1. return表达式：用于返回表达式的值，并且函数退出。
-      2. yield表达式：用户产生一个生成器对象，迭代方位生成器对象，可依次生成所有的数据。一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被yield中断了数次，每次中断都会通过yield返回当前的迭代值。yield的好处是显而易见的，把一个函数改写为一个generator就获得了迭代能力，比起用类的实例保存状态来计算下一个next()的值，不仅代码简洁，而且执行流程异常清晰。如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断。[参考详细说明网址](https://www.runoob.com/w3cnote/python-yield-used-analysis.html)。**在调用生成器函数的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息（保留局部变量），返回yield的值, 并在下一次执行next()方法时从当前位置继续运行，直到生成器被全部遍历完**。![return和yield的区别](../../pictures/PythonBasisReturnandYield.jpg "return和yield的区别。下面的流程图没有画好，只有引用图片了。")。
+      2. yield表达式：用户产生一个生成器对象，迭代方位生成器对象，可依次生成所有的数据。一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被yield中断了数次，每次中断都会通过yield返回当前的迭代值。yield的好处是显而易见的，把一个函数改写为一个generator就获得了迭代能力，比起用类的实例保存状态来计算下一个next()的值，不仅代码简洁，而且执行流程异常清晰。如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断。[参考详细说明网址](https://www.runoob.com/w3cnote/python-yield-used-analysis.html)。**在调用生成器函数的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息（保留局部变量），返回yield的值, 并在下一次执行next()方法时从当前位置继续运行，直到生成器被全部遍历完**。![return和yield的区别](../images/PythonBasisReturnandYield.jpg "return和yield的区别。下面的流程图没有画好，只有引用图片了。")。
 
          ```mermaid
          graph LR

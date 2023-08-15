@@ -59,6 +59,9 @@ Author: youareeverysingleday
    2. 当您使用make publish（或其他 make 命令之一）生成站点时。
    3. 当您明确指定它作为要使用的配置文件时（即pelican -s publishconf.py content_dir）。因此，如果您使用命令生成站点pelican，并且没有明确指定您的配置文件，则只会pelicanconf.py使用；因此你需要将GOOGLE_ANALYTICS变量设置在那里。
    4. 注意publishconf.py和pelicanconf.py的区别。在pelicanconf.py中不要设置SITEURL，因为设置之后就会导致在本地调试的时候重新生成文章的链接是SITEURL设置的远程地址。
+5. 暂时不使用category_meta插件。因为这个插件的使用要求：“our articles should not have a Category: tag in their metadata; instead, they should be stored in (subdirectories of) per-category directories.” 也就是说要求md文件中不能含有Category元数据。这个要求很奇怪。
+6. favicon.ico放在output（也就是生成最终静态页面的目录下）的根目录下。这样就不会报：“WARNING  Unable to find `/favicon.ico` or variations: ”的错误了。
+7. 注意在使用了图片的文章里面需要修改图片的引用路径。
 
 ## problems
 
@@ -67,6 +70,9 @@ Author: youareeverysingleday
    2. 但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。
 2. gum样式没有显示category、page和~~tags~~。
    1. 使用tags需要使用tag_cloud插件。
+3. 生成的时候如何将favicon.ico也生成在静态文件的根目录下。
+4. ~~本地调试页面的时候，发现具体的文章页面的路径是SITEURL+文章Slug组成的绝对路径。~~
+   1. 通过使用RELATIVE_URLS = True来解决。
 
 ## references
 

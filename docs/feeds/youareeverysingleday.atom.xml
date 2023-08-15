@@ -239,6 +239,21 @@
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5. 暂时不使用category_meta插件。因为这个插件的使用要求：“our articles should not have a Category: tag in their metadata; instead, they should be stored in (subdirectories of) per-category directories.” 也就是说要求md文件中不能含有Category元数据。这个要求很奇怪。&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6. favicon.ico放在output（也就是生成最终静态页面的目录下）的根目录下。这样就不会报：“WARNING  Unable to find &lt;code&gt;/favicon.ico&lt;/code&gt; or variations: ”的错误了。&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7.&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/li&gt;
@@ -250,6 +265,9 @@
 &lt;li&gt;但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。&lt;/li&gt;
 &lt;li&gt;gum样式没有显示category、page和~~tags~~。&lt;/li&gt;
 &lt;li&gt;使用tags需要使用tag_cloud插件。&lt;/li&gt;
+&lt;li&gt;生成的时候如何将favicon.ico也生成在静态文件的根目录下。&lt;/li&gt;
+&lt;li&gt;~~本地调试页面的时候，发现具体的文章页面的路径是SITEURL+文章Slug组成的绝对路径。~~&lt;/li&gt;
+&lt;li&gt;通过使用RELATIVE_URLS = True来解决。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;references&lt;/h2&gt;
 &lt;h3&gt;放弃使用jekyll&lt;/h3&gt;
@@ -640,7 +658,7 @@ print(f&amp;#39;{name} is {age} years old&amp;#39;)
 &lt;ol&gt;
 &lt;li&gt;return表达式：用于返回表达式的值，并且函数退出。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;yield表达式：用户产生一个生成器对象，迭代方位生成器对象，可依次生成所有的数据。一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被yield中断了数次，每次中断都会通过yield返回当前的迭代值。yield的好处是显而易见的，把一个函数改写为一个generator就获得了迭代能力，比起用类的实例保存状态来计算下一个next()的值，不仅代码简洁，而且执行流程异常清晰。如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断。&lt;a href="https://www.runoob.com/w3cnote/python-yield-used-analysis.html"&gt;参考详细说明网址&lt;/a&gt;。&lt;strong&gt;在调用生成器函数的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息（保留局部变量），返回yield的值, 并在下一次执行next()方法时从当前位置继续运行，直到生成器被全部遍历完&lt;/strong&gt;。&lt;img alt="return和yield的区别" src="../../pictures/PythonBasisReturnandYield.jpg" title="return和yield的区别。下面的流程图没有画好，只有引用图片了。"&gt;。&lt;/p&gt;
+&lt;p&gt;yield表达式：用户产生一个生成器对象，迭代方位生成器对象，可依次生成所有的数据。一个带有yield的函数就是一个generator，它和普通函数不同，生成一个generator看起来像函数调用，但不会执行任何函数代码，直到对其调用next()（在for循环中会自动调用next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个yield语句就会中断，并返回一个迭代值，下次执行时从yield的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被yield中断了数次，每次中断都会通过yield返回当前的迭代值。yield的好处是显而易见的，把一个函数改写为一个generator就获得了迭代能力，比起用类的实例保存状态来计算下一个next()的值，不仅代码简洁，而且执行流程异常清晰。如何判断一个函数是否是一个特殊的 generator 函数？可以利用 isgeneratorfunction 判断。&lt;a href="https://www.runoob.com/w3cnote/python-yield-used-analysis.html"&gt;参考详细说明网址&lt;/a&gt;。&lt;strong&gt;在调用生成器函数的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息（保留局部变量），返回yield的值, 并在下一次执行next()方法时从当前位置继续运行，直到生成器被全部遍历完&lt;/strong&gt;。&lt;img alt="return和yield的区别" src="../images/PythonBasisReturnandYield.jpg" title="return和yield的区别。下面的流程图没有画好，只有引用图片了。"&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;mermaid
  graph LR
     A[def]--&amp;gt;B[函数]

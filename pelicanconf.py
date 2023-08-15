@@ -7,8 +7,6 @@ SITEURL = 'https://youareeverysingleday.github.io'
 # 设置页面子标题。
 SITESUBTITLE = 'You are every single day.'
 
-RELATIVE_URLS = False
-
 PATH = 'content'
 
 TIMEZONE = 'Europe/Rome'
@@ -53,10 +51,17 @@ DISPLAY_PAGES_ON_MENU = True
 # 是否在模板的菜单上显示类别。模板可能不支持此设置。
 DISPLAY_CATEGORIES_ON_MENU = True
 
+FEED_ALL_RSS =  'feeds/all.rss.xml'
+
 # 设置使用的样式模板。
 THEME = 'theme/gum'
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['tag_cloud', 'more_categories']
+
+# 暂时不适用category_meta插件。因为这个插件的使用要求：“our articles should not have a Category: 
+# tag in their metadata; instead, they should be stored in 
+# (subdirectories of) per-category directories.”
+# 也就是说要求md文件中不能含有Category元数据。这个要求很奇怪。
+PLUGINS = ['tag_cloud', 'more_categories', 'autopages']
 # 设置需要取的静态文件（图片）的路径。
 STATIC_PATHS = ['images']
 
@@ -87,4 +92,4 @@ LOAD_CONTENT_CACHE = False
 
 
 # Uncomment following line if you want document-relative URLs when developing
-#RELATIVE_URLS = True
+RELATIVE_URLS = True
