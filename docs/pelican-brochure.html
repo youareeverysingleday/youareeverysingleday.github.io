@@ -279,16 +279,21 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>4. 注意publishconf.py和pelicanconf.py的区别。在pelicanconf.py中不要设置SITEURL，因为设置之后就会导致在本地调试的时候重新生成文章的链接是SITEURL设置的远程地址。</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </li>
 </ol>
 <h2>problems</h2>
 <ol>
-<li>无法显示latex公式。</li>
+<li>~~无法显示latex公式。~~</li>
 <li>解决这个问题的方法不是让pelican解决的，而是通过chrome插件来解决的。使用chrome的TeX All the Things插件就可以很好的显示所有页面中的latex公式。</li>
 <li>但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。</li>
-<li>gum样式没有显示category、page和tags。</li>
+<li>gum样式没有显示category、page和~~tags~~。</li>
 <li>使用tags需要使用tag_cloud插件。</li>
 </ol>
 <h2>references</h2>
@@ -337,13 +342,19 @@
   <ul>
 
   
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="https://youareeverysingleday.github.io/category/commonknowledge.html">Commonknowledge</a></li>
+    <li><a href="https://youareeverysingleday.github.io/category/physics.html">Physics</a></li>
+  </ul>
 
 
 <h4>Tags</h4>
 	<ul class="blank">
+	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/physics.html">Physics</a></li>
+	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/pelican.html">pelican</a></li>
 	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/python.html">Python</a></li>
 	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/latex.html">LaTex</a></li>
-	    <li class="tag-4"><a href="https://youareeverysingleday.github.io/tag/pelican.html">pelican</a></li>
 	    <li class="tag-1"><a href="https://youareeverysingleday.github.io/tag/blog.html">blog</a></li>
 </ul>
 

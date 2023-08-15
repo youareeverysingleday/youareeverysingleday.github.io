@@ -58,13 +58,14 @@ Author: youareeverysingleday
    1. 在publishconf.py中定义的内容将覆盖pelicanconf.py中的相同定义。作为Pelican设置文件首先将分为两部分，考虑两种主要的操作模式：本地开发和生产部署（分别为pelicanconf.py和publishconf.py）。不建议将GOOGLE_ANALYTICS从pelicanconf.py移动publishconf.py到。在本地开发时，Google Analytics 和 Disqus 等设置在设计上pelicanconf.py将被故意排除。pelicanconf.py在本地测试中包含这些设置可能会产生不利影响：不准确的站点统计数据、虚假评论线程以及其他意外的副作用。但请注意，publishconf.py仅在两种情况下使用：
    2. 当您使用make publish（或其他 make 命令之一）生成站点时。
    3. 当您明确指定它作为要使用的配置文件时（即pelican -s publishconf.py content_dir）。因此，如果您使用命令生成站点pelican，并且没有明确指定您的配置文件，则只会pelicanconf.py使用；因此你需要将GOOGLE_ANALYTICS变量设置在那里。
+   4. 注意publishconf.py和pelicanconf.py的区别。在pelicanconf.py中不要设置SITEURL，因为设置之后就会导致在本地调试的时候重新生成文章的链接是SITEURL设置的远程地址。
 
 ## problems
 
-1. 无法显示latex公式。
+1. ~~无法显示latex公式。~~
    1. 解决这个问题的方法不是让pelican解决的，而是通过chrome插件来解决的。使用chrome的TeX All the Things插件就可以很好的显示所有页面中的latex公式。
    2. 但是TeX All the Things插件对矩阵的表现非常差，mathjax的显示效果最好。
-2. gum样式没有显示category、page和tags。
+2. gum样式没有显示category、page和~~tags~~。
    1. 使用tags需要使用tag_cloud插件。
 
 ## references

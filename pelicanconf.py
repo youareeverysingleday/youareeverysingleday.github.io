@@ -3,10 +3,6 @@
 
 AUTHOR = 'youareeverysingleday'
 SITENAME = 'Coder'
-# If your site is available via HTTPS, make sure SITEURL begins with https://
-# 网站的基本URL。默认情况下没有定义，因此最好指定您的SITEURL；如果不这样做，
-# 则不会使用格式正确的URL生成提要。如果您的站点可通过HTTPS访问，则此设置应以 
-# https:// -否则使用 http:// . 然后附加你的域，结尾不带斜杠。例子： SITEURL = 'https://example.com'
 SITEURL = 'https://youareeverysingleday.github.io'
 # 设置页面子标题。
 SITESUBTITLE = 'You are every single day.'
@@ -23,12 +19,14 @@ DEFAULT_LANG = 'en'
 # 然而， 这是一个破坏性的设置，应该非常小心地处理。
 DELETE_OUTPUT_DIRECTORY = True
 
+
 # Feed generation is usually not desired when developing
 # FEED_ALL_ATOM = None
 # CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
+
+# TRANSLATION_FEED_ATOM = None
+# AUTHOR_FEED_ATOM = None
+# AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('Pelican', 'https://getpelican.com/'),
