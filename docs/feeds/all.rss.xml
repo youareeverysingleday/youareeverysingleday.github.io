@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Coder</title><link>https://youareeverysingleday.github.io/</link><description>You are every single day.</description><lastBuildDate>Wed, 30 Aug 2023 00:00:00 +0200</lastBuildDate><item><title>Linux使用经验</title><link>https://youareeverysingleday.github.io/Linux-Common-Experience.html</link><description>&lt;h2&gt;Reference&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;强烈推荐一个关于Linux使用的网站：&lt;a href="https://linuxize.com/"&gt;https://linuxize.com/&lt;/a&gt;。清晰且干净。然后以这个为基础去搜索相关内容。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Experience&lt;/h2&gt;
+<rss version="2.0"><channel><title>Coder</title><link>https://youareeverysingleday.github.io/</link><description>You are every single day.</description><lastBuildDate>Thu, 31 Aug 2023 00:00:00 +0200</lastBuildDate><item><title>Linux使用经验</title><link>https://youareeverysingleday.github.io/Linux-Common-Experience.html</link><description>&lt;h2&gt;Experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;使用Ubuntu server版本下载地址&lt;a href="https://cn.ubuntu.com/server"&gt;https://cn.ubuntu.com/server&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Wed, 30 Aug 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-08-30:/Linux-Common-Experience.html</guid><category>Commonknowledge</category><category>blog</category><category>Linux</category></item><item><title>如何使用Pelican创建一个博客</title><link>https://youareeverysingleday.github.io/pelican-brochure.html</link><description>&lt;h2&gt;experience&lt;/h2&gt;
+&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p/373773218&lt;/a&gt;。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要 …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Thu, 31 Aug 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-08-31:/Linux-Common-Experience.html</guid><category>Commonknowledge</category><category>blog</category><category>Linux</category></item><item><title>如何使用Pelican创建一个博客</title><link>https://youareeverysingleday.github.io/pelican-brochure.html</link><description>&lt;h2&gt;experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;常用命令，&lt;/li&gt;
 &lt;li&gt;命令参考&lt;a href="https://www.osgeo.cn/pelican/"&gt;https://www.osgeo.cn/pelican/&lt;/a&gt;。&lt;/li&gt;

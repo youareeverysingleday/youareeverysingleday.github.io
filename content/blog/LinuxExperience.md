@@ -1,13 +1,9 @@
 Title: Linux使用经验
-Date: 2023-08-30
+Date: 2023-08-31
 Category: Commonknowledge
 Tags: blog,Linux
 Slug: Linux-Common-Experience
 Author: youareeverysingleday
-
-## Reference
-
-1. 强烈推荐一个关于Linux使用的网站：<https://linuxize.com/>。清晰且干净。然后以这个为基础去搜索相关内容。
 
 ## Experience
 
@@ -67,10 +63,94 @@ reference: <https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/>
 
 ### Install Python
 
+Reference 安装python参考:<https://blog.csdn.net/Hiking_Yu/article/details/104373221>。
+Reference 安装pip参考:<https://zhuanlan.zhihu.com/p/418368712>。
+
 1. Ubuntu 20.04.x Desktop中很多组件都依赖Python 3.8.x。不要直接删除系统自带的python3。直接会导致gnome也被删除。建议安装其他版本的Python，然后将修改指向。
    1. 参考:<https://zhuanlan.zhihu.com/p/403819436>。
-   2. 切换默认版本命令：sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9
+2. update-alternatives相关命令
+   1. 列出所有可用的 python 替代版本信息：update-alternatives --list python3。
+      1. 如果下面出现以下信息表示还没有可以替代的版本
+      ```log
+      update-alternatives: error: no alternatives for python3
+      ```
+   2. 对于ubuntu 20.04而言安装可替代的版本。注意：这里只能设置为python3这个标识，不能设置为python这个标识，因为后面需要安装pip的会报错，推测可能是apt无法识别python这个标识导致的。
+      1. 错误的命令：
+         1. sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+         2. sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
+      2. 正确的命令：
+         1. sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+         2. sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2
+      3. 安装之后再次查看python的对应关系：sudo update-alternatives --list python3。
+   3. 配置python命令对应的版本：sudo update-alternatives --config python3
+   ```log
+   There are 2 choices for the alternative python3 (providing /usr/bin/python3).
 
+   Selection    Path                 Priority   Status
+   ------------------------------------------------------------
+   * 0            /usr/bin/python3.10   1         auto mode
+   1            /usr/bin/python3.10   1         manual mode
+   2            /usr/bin/python3.8    1         manual mode
+
+   Press <enter> to keep the current choice[*], or type selection number: 1
+   ```
+   和之前的配置对应，选择1作为默认版本。
+   1. 然后再用python3 --version查看版本情况。
+3. 对于ubuntu 20.04而言安装pip。需要的python命令是python3。
+   1. 直接运行pip3 --version会报错。此时需要修复distutils。
+      1. 错误信息为：ModuleNotFoundError: No module named 'distutils.util'。
+      2. 修复distutils：sudo apt install python3.10-distutils
+   2. 重装pip
+      1. 重装pip：curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+         1. 新的ubuntu里面是没有curl组件的。需要使用apt install curl安装curl。
+      2. 重装pip：python3 get-pip.py
+         1. 参考: <https://blog.csdn.net/fanjinglian_/article/details/130077179>。
+         2. 使用python3 get-pip.py之后出现如下报错：
+         ```log
+         WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/[username]/.local/bin' which is not on PATH.
+         Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+         ```
+         使用命令来解决。实际上是指定pip的版本：
+            1. echo 'export PATH=/home/[username]/.local/bin:$PATH' >>~/.bashrc
+            2. source ~/.bashrc
+      3. 修改pip指向：sudo vi /usr/local/bin/pip3
+         ```python
+         #!/usr/bin/python3
+         #-*- coding: utf-8 -*-
+         import re
+         import sys
+         from pip._internal.cli.main import main
+         if __name__ == '__main__':
+            sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+            sys.exit(main())
+         ```
+            1. vi中的编辑命令。
+               1. :q! 强制退出，并且不保存。
+               2. i 进入编辑模式。
+               3. ESC 退出编辑模式。
+               4. :wq 保存并退出。
+            2. 最后使用cat /usr/local/bin/pip3查看刚刚写入的内容。
+      4. 最后使用pip3 --version查看版本是否出差。Completed.
+   3. 修改pip的镜像源：
+      1. 这是在windows环境中修改下载源的命令：pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 。 在ubuntu环境中该方法无效。
+      2. 参考：<https://blog.csdn.net/limengshi138392/article/details/111315014>
+      3. 创建pip.conf文件
+         ```shell
+         cd ~                   # 进入家目录 
+         mkdir .pip             # 新建.pip隐藏文件夹
+         # 或者 mkdir -p .config/pip      
+         cd .pip                # 进入.pip文件夹
+         # 或者 cd .config/pip               
+         touch pip.conf         # 新建pip.conf文件
+         vim pip.conf           # 用vim编辑pip.conf文件
+         ```
+      4. pip.conf文件内容为：
+         ```log
+         [global]
+         index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+         trusted-host = pypi.tuna.tsinghua.edu.cn
+         ```
+   4. 查看当前pip源：pip3 config list 。完成。
 ## File System
 
 reference: <https://zhuanlan.zhihu.com/p/128669031>

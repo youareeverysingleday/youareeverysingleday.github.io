@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Coder</title><link href="https://youareeverysingleday.github.io/" rel="alternate"></link><link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" rel="self"></link><id>https://youareeverysingleday.github.io/</id><updated>2023-08-30T00:00:00+02:00</updated><subtitle>You are every single day.</subtitle><entry><title>Linux使用经验</title><link href="https://youareeverysingleday.github.io/Linux-Common-Experience.html" rel="alternate"></link><published>2023-08-30T00:00:00+02:00</published><updated>2023-08-30T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-08-30:/Linux-Common-Experience.html</id><summary type="html">&lt;h2&gt;Reference&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;强烈推荐一个关于Linux使用的网站：&lt;a href="https://linuxize.com/"&gt;https://linuxize.com/&lt;/a&gt;。清晰且干净。然后以这个为基础去搜索相关内容。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Experience&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Coder</title><link href="https://youareeverysingleday.github.io/" rel="alternate"></link><link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" rel="self"></link><id>https://youareeverysingleday.github.io/</id><updated>2023-08-31T00:00:00+02:00</updated><subtitle>You are every single day.</subtitle><entry><title>Linux使用经验</title><link href="https://youareeverysingleday.github.io/Linux-Common-Experience.html" rel="alternate"></link><published>2023-08-31T00:00:00+02:00</published><updated>2023-08-31T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-08-31:/Linux-Common-Experience.html</id><summary type="html">&lt;h2&gt;Experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;使用Ubuntu server版本下载地址&lt;a href="https://cn.ubuntu.com/server"&gt;https://cn.ubuntu.com/server&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h2&gt;Reference&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;强烈推荐一个关于Linux使用的网站：&lt;a href="https://linuxize.com/"&gt;https://linuxize.com/&lt;/a&gt;。清晰且干净。然后以这个为基础去搜索相关内容。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Experience&lt;/h2&gt;
+&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p/373773218&lt;/a&gt;。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要 …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h2&gt;Experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;使用Ubuntu server版本下载地址&lt;a href="https://cn.ubuntu.com/server"&gt;https://cn.ubuntu.com/server&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p/373773218&lt;/a&gt;。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要在生产环境的服务器上添加 GUI。后续删除 GUI 时可能会导致依赖问题，有些情况会破坏系统。&lt;/li&gt;
@@ -68,11 +60,94 @@
 &lt;li&gt;重启：sudo systemctl enable --now ssh&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3&gt;Install Python&lt;/h3&gt;
+&lt;p&gt;Reference 安装python参考:&lt;a href="https://blog.csdn.net/Hiking_Yu/article/details/104373221"&gt;https://blog.csdn.net/Hiking_Yu/article/details/104373221&lt;/a&gt;。
+Reference 安装pip参考:&lt;a href="https://zhuanlan.zhihu.com/p/418368712"&gt;https://zhuanlan.zhihu.com/p/418368712&lt;/a&gt;。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Ubuntu 20.04.x Desktop中很多组件都依赖Python 3.8.x。不要直接删除系统自带的python3。直接会导致gnome也被删除。建议安装其他版本的Python，然后将修改指向。&lt;/li&gt;
 &lt;li&gt;参考:&lt;a href="https://zhuanlan.zhihu.com/p/403819436"&gt;https://zhuanlan.zhihu.com/p/403819436&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;切换默认版本命令：sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9&lt;/li&gt;
+&lt;li&gt;update-alternatives相关命令&lt;/li&gt;
+&lt;li&gt;列出所有可用的 python 替代版本信息：update-alternatives --list python3。&lt;ol&gt;
+&lt;li&gt;如果下面出现以下信息表示还没有可以替代的版本
+  &lt;code&gt;log
+  update-alternatives: error: no alternatives for python3&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;对于ubuntu 20.04而言安装可替代的版本。注意：这里只能设置为python3这个标识，不能设置为python这个标识，因为后面需要安装pip的会报错，推测可能是apt无法识别python这个标识导致的。&lt;ol&gt;
+&lt;li&gt;错误的命令：&lt;ol&gt;
+&lt;li&gt;sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1&lt;/li&gt;
+&lt;li&gt;sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;正确的命令：&lt;ol&gt;
+&lt;li&gt;sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1&lt;/li&gt;
+&lt;li&gt;sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;安装之后再次查看python的对应关系：sudo update-alternatives --list python3。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;配置python命令对应的版本：sudo update-alternatives --config python3
+   ```log
+   There are 2 choices for the alternative python3 (providing /usr/bin/python3).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Selection    Path                 Priority   Status&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;0            /usr/bin/python3.10   1         auto mode
+   1            /usr/bin/python3.10   1         manual mode
+   2            /usr/bin/python3.8    1         manual mode&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Press &lt;enter&gt; to keep the current choice[&lt;em&gt;], or type selection number: 1
+   &lt;code&gt;和之前的配置对应，选择1作为默认版本。
+   1. 然后再用python3 --version查看版本情况。
+3. 对于ubuntu 20.04而言安装pip。需要的python命令是python3。
+   1. 直接运行pip3 --version会报错。此时需要修复distutils。
+      1. 错误信息为：ModuleNotFoundError: No module named 'distutils.util'。
+      2. 修复distutils：sudo apt install python3.10-distutils
+   2. 重装pip
+      1. 重装pip：curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+         1. 新的ubuntu里面是没有curl组件的。需要使用apt install curl安装curl。
+      2. 重装pip：python3 get-pip.py
+         1. 参考: &amp;lt;https://blog.csdn.net/fanjinglian_/article/details/130077179&amp;gt;。
+         2. 使用python3 get-pip.py之后出现如下报错：&lt;/code&gt;log
+         WARNING: The scripts pip, pip3 and pip3.10 are installed in '/home/[username]/.local/bin' which is not on PATH.
+         Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+         &lt;code&gt;使用命令来解决。实际上是指定pip的版本：
+            1. echo 'export PATH=/home/[username]/.local/bin:$PATH' &amp;gt;&amp;gt;~/.bashrc
+            2. source ~/.bashrc
+      3. 修改pip指向：sudo vi /usr/local/bin/pip3&lt;/code&gt;python
+         #!/usr/bin/python3
+         #-&lt;/em&gt;- coding: utf-8 -*-
+         import re
+         import sys
+         from pip._internal.cli.main import main
+         if &lt;strong&gt;name&lt;/strong&gt; == '&lt;strong&gt;main&lt;/strong&gt;':
+            sys.argv[0] = re.sub(r'(-script.pyw|.exe)?$', '', sys.argv[0])
+            sys.exit(main())
+         &lt;code&gt;1. vi中的编辑命令。
+               1. :q! 强制退出，并且不保存。
+               2. i 进入编辑模式。
+               3. ESC 退出编辑模式。
+               4. :wq 保存并退出。
+            2. 最后使用cat /usr/local/bin/pip3查看刚刚写入的内容。
+      4. 最后使用pip3 --version查看版本是否出差。Completed.
+   3. 修改pip的镜像源：
+      1. 这是在windows环境中修改下载源的命令：pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple 。 在ubuntu环境中该方法无效。
+      2. 参考：&amp;lt;https://blog.csdn.net/limengshi138392/article/details/111315014&amp;gt;
+      3. 创建pip.conf文件&lt;/code&gt;shell
+         cd ~                   # 进入家目录 
+         mkdir .pip             # 新建.pip隐藏文件夹
+         # 或者 mkdir -p .config/pip    &lt;br&gt;
+         cd .pip                # 进入.pip文件夹
+         # 或者 cd .config/pip             &lt;br&gt;
+         touch pip.conf         # 新建pip.conf文件
+         vim pip.conf           # 用vim编辑pip.conf文件
+         &lt;code&gt;4. pip.conf文件内容为：&lt;/code&gt;log
+         [global]
+         index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+         trusted-host = pypi.tuna.tsinghua.edu.cn
+         ```
+   4. 查看当前pip源：pip3 config list 。完成。&lt;/p&gt;
 &lt;h2&gt;File System&lt;/h2&gt;
 &lt;p&gt;reference: &lt;a href="https://zhuanlan.zhihu.com/p/128669031"&gt;https://zhuanlan.zhihu.com/p/128669031&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Unix系统把一切资源都看作是文件，包括硬件设备。硬件所形成的文件，通常称为设备文件。这样用户就可以用读写文件的方式实现对硬件的访问，这样带来的优势也是显而易见的。Unix 权限模型也是围绕文件的概念来建立的，所以对设备也就可以同样处理了。&lt;/p&gt;
