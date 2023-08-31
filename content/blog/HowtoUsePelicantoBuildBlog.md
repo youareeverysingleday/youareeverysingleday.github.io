@@ -11,13 +11,17 @@ Author: youareeverysingleday
    1. 命令参考<https://www.osgeo.cn/pelican/>。
    2. 流程参考<https://zhuanlan.zhihu.com/p/614277442>。
    
-      |编号|命令|作用|说明|
+      |顺序|命令|作用|说明|
       |---|---|---|---|
       |1|pelican-quickstart|填写pelican基本信息。后期可以通过pelicanconf.py修改。|进入页面目录|
       |2|pelican content|生成网站。|需要content目录下已经有按照规则撰写的markdown文档。|
       |3|pelican --listen|打开新的终端会话，导航到项目根目录，然后运行以下命令以启动Pelican的web服务器。|CTRL+C退出的时候反应会比较慢。|
-      |4||||
-      |5||||
+      |4|/|使用一个主题||
+      |5|/|增加blog的功能，也就是增加blog的插件。||
+      |6|/|将更新之后的blog更新到github上。|到此基本步骤完成。后期的使用主要在于如何增加各种插件和使用何种模板上。|
+      |7|/|||
+
+
    3. 创建的markdown文档开头的格式及说明：
    
       |名称|描述|
@@ -92,7 +96,10 @@ Author: youareeverysingleday
 3. 操作参考<https://jlhxxxx.github.io/pelican-github.html>。
 4. 中文pelican手册<https://www.osgeo.cn/pelican/plugins.html>。
 5. 需要添加pelican-plusin
-   1. 添加了assets始终报错：CRITICAL UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb2 in position 8: invalid     __init__.py:566                    start byte
+   1. 添加了assets始终报错：
+      ```log
+      CRITICAL UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb2 in position 8: invalid     __init__.py:566                    start byte
+      ```
 6. 模板参考：
    1. 展示：<https://pelicanthemes.com/>。
    2. 代码：<https://github.com/getpelican/pelican-themes>。

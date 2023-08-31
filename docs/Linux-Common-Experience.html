@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>Linux使用经验</title>
+        <meta charset="utf-8" />
+        <link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Full Atom Feed" />
+        <link href="https://youareeverysingleday.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Coder Full RSS Feed" />
+        <link href="https://youareeverysingleday.github.io/feeds/commonknowledge.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
+
+        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="./">Coder <strong>You are every single day.</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="./">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="./Linux-Common-Experience.html" rel="bookmark"
+                   title="Permalink to Linux使用经验">Linux使用经验</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-08-30T00:00:00+02:00">
+                周三 30 八月 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="./author/youareeverysingleday.html"> youareeverysingleday</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <h2>Reference</h2>
+<ol>
+<li>强烈推荐一个关于Linux使用的网站：<a href="https://linuxize.com/">https://linuxize.com/</a>。清晰且干净。然后以这个为基础去搜索相关内容。</li>
+</ol>
+<h2>Experience</h2>
+<ol>
+<li>使用Ubuntu server版本下载地址<a href="https://cn.ubuntu.com/server">https://cn.ubuntu.com/server</a>。</li>
+<li>ubuntu server安装图形界面<a href="https://zhuanlan.zhihu.com/p/373773218">https://zhuanlan.zhihu.com/p/373773218</a>。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要在生产环境的服务器上添加 GUI。后续删除 GUI 时可能会导致依赖问题，有些情况会破坏系统。</li>
+<li>首先升级apt：sudo apt update</li>
+<li>安装图形界面：sudo apt install ubuntu-desktop<ol>
+<li>安装的是GNOME桌面，因为它是 Ubuntu 默认的桌面。</li>
+</ol>
+</li>
+<li>安装“显示管理器”或“登录管理器”的组件。这个工具的功能是在管理用户对话和鉴权时启动 显示服务器 并加载桌面。：sudo apt install lightdm</li>
+<li>启动显示管理器并加载 GUI：sudo service lightdm start<ol>
+<li>检查当前的显示管理器：cat /etc/X11/default-display-manager</li>
+</ol>
+</li>
+<li>关闭GUI：sudo service lightdm stop</li>
+<li>删除GUI（请注意在某些情况下删除 GUI 可能会带来依赖问题，因此请备份好重要数据或创建一个系统快照）：</li>
+<li>sudo apt remove ubuntu-desktop</li>
+<li>sudo apt remove lightdm</li>
+<li>sudo apt autoremove</li>
+<li>sudo service lightdm stop</li>
+<li>安装输入法</li>
+<li>reference:<a href="https://zhuanlan.zhihu.com/p/529892064">https://zhuanlan.zhihu.com/p/529892064</a>。</li>
+<li>注意的地方：安装了输入法之后需要重启一次才能看到。</li>
+</ol>
+<h3>connect to Ubuntu by SSH from windows</h3>
+<p>reference: <a href="https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/">https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-20-04/</a></p>
+<ol>
+<li>ubuntu安装ssh</li>
+<li>sudo apt update</li>
+<li>sudo apt install openssh-server</li>
+<li>windows 10安装powershell。通过windows store安装。</li>
+<li>ubuntu查看ssh状态</li>
+<li>sudo systemctl status ssh</li>
+<li>以下Log表示正在运行。
+      <code>log
+      ● ssh.service - OpenBSD Secure Shell server
+      Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+      Active: active (running) since Mon 2020-06-01 12:34:00 CEST; 9h ago</code></li>
+<li>Ubuntu 自带一个配置防火墙配置工具，称为 UFW。如果防火墙在你的系统上被启用，请确保打开了 SSH 端口。</li>
+<li>sudo ufw allow ssh</li>
+<li>就这些。现在你可以从任何远程机器上通过 SSH 连接到你的 Ubuntu 系统。Linux 和 macOS 系统默认都安装了 SSH 客户端。想要从一个 Window 机器上连接，使用一个 SSH 客户端，例如:PUTTY（我使用powershell）。</li>
+<li>连接到ubuntu的SSH</li>
+<li>想要在局域网内连接到你的 Ubuntu 机器，以下面的格式输入ssh命令，加上用户名和IP地址。</li>
+<li>ssh username@ip_address</li>
+<li>确保你将<code>username</code>修改成你自己的用户名，<code>ip_address</code>修改成你安装了 SSH 的 Ubuntu 机器的 IP 地址。</li>
+<li>如果你不知道你的 IP 地址，你可以使用ip命令轻易地找到它：ip a</li>
+<li>通过IP 地址，通过运行下面的ssh 命令登录远程机器：</li>
+<li>ssh linuxize@10.0.2.15</li>
+<li>不用在意下列信息
+      <code>log
+      The authenticity of host '10.0.2.15 (10.0.2.15)' can't be established.
+      ECDSA key fingerprint is SHA256:Vybt22mVXuNuB5unE++yowF7lgA/9/2bLSiO3qmYWBY.
+      Are you sure you want to continue connecting (yes/no)?</code></li>
+<li>想要在你的 Ubuntu 系统上禁用 SSH 服务器，简单停止 SSH 即可。</li>
+<li>禁用：sudo systemctl disable --now ssh</li>
+<li>重启：sudo systemctl enable --now ssh</li>
+</ol>
+<h3>Install Python</h3>
+<ol>
+<li>Ubuntu 20.04.x Desktop中很多组件都依赖Python 3.8.x。不要直接删除系统自带的python3。直接会导致gnome也被删除。建议安装其他版本的Python，然后将修改指向。</li>
+<li>参考:<a href="https://zhuanlan.zhihu.com/p/403819436">https://zhuanlan.zhihu.com/p/403819436</a>。</li>
+<li>切换默认版本命令：sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9</li>
+</ol>
+<h2>File System</h2>
+<p>reference: <a href="https://zhuanlan.zhihu.com/p/128669031">https://zhuanlan.zhihu.com/p/128669031</a></p>
+<p>Unix系统把一切资源都看作是文件，包括硬件设备。硬件所形成的文件，通常称为设备文件。这样用户就可以用读写文件的方式实现对硬件的访问，这样带来的优势也是显而易见的。Unix 权限模型也是围绕文件的概念来建立的，所以对设备也就可以同样处理了。</p>
+<p>根目录是整个文件系统中最重要的一个目录，位于Linux文件系统目录结构的顶层。因为不但所有的目录都是由根目录衍生出来的， 同时根目录也与操作系统的开机、还原、系统修复等行为有关。</p>
+<blockquote>
+<p>系统开机所需要的特定文件数据有：核心文件、开机程序、 函数库等等。如果系统出现错误，根目录也必须要包含有能够修复文件系统的程序才行。因此FHS标准建议：根目录(/)所在分区应该越小越好， 且应用程序所安装的软件最好不要与根目录放在同一个分区内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。说白了，就是根目录和Windows的C盘一个样。因为越大的分区内你会放入越多的数据，如此一来根目录所在分区就可能会有较多发生错误的机会。</p>
+</blockquote>
+<p>因为根目录与开机有关，开机过程中仅有根目录会被挂载， 其他分区则是在开机完成之后才会持续的进行挂载行为。因此根目录下与开机过程有关的目录， 就应该与根目录放在同一个分区里。这些目录分别是：/etc，/bin，/dev，/lib，/sbin。</p>
+<p><img alt="Linux文件系统结构" src="./../images/LinuxFileSystemStructure.png" title="Linux文件系统结构"></p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>根目录，位于Linux文件系统目录结构的顶层。通常根目录下只存放目录，不存放文件，/etc，/bin，/dev，/lib，/sbin应该和根目录放置在一个分区中。</td>
+</tr>
+<tr>
+<td>/bin，/usr/bin</td>
+<td>该目录为命令文件目录，也称为二进制目录。包含了供系统管理员及普通用户使用的重要的linux命令和二进制（可执行）文件，包含shell解释器等。</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>该目录中存放系统的内核文件和引导装载程序文件，/boot/vmlinuz为linux的内核文件，以及/boot/gurb。建议单独分区，分区大小100M即可。</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>设备（device）文件目录，存放linux系统下的设备文件，访问该目录下某个文件，相当于访问某个设备（终端、磁盘驱动器、光驱及网卡等，包括字符设备和块设备）等，常用的是挂载光驱mount /dev/cdrom/mnt。<strong>例如你的第一块硬盘的代码是 /dev/hda1</strong>。</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>系统配置文件目录，该目录存放系统的大部分配置文件和子目录，不建议在此目录下存放可执行文件。该目录下的文件由系统管理员来使用，普通用户对大部分文件有只读权限。</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>系统默认的用户宿主目录，新增用户账号时，用户的宿主目录都存放在此目录下，~表示当前用户的宿主目录。建议单独分区，并设置较大的磁盘空间，方便用户存放数据。</td>
+</tr>
+<tr>
+<td>/lib，/usr/lib，/usr/local/lib</td>
+<td>系统最基本的动态连接资源库，内核模块文件目录。几乎所有的应用程序都用到此资源库。/lib目录存放了所有重要的库文件，其他的库文件则大部分存放在/usr/lib目录下。</td>
+</tr>
+<tr>
+<td>/lost+fount</td>
+<td>在EXT2或EXT3文件系统中，系统意外崩溃或意外关机时，产生的一些文件碎片放在这里。当系统重新启动时，fsck工具会检查这里，并修复已经损坏的文件系统。</td>
+</tr>
+<tr>
+<td>/mnt，/media</td>
+<td>mnt目录主要用来临时挂载文件系统，为某些设备提供默认挂载点。</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>给主机额外安装软件所摆放的目录。</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>此目录的数据都在内存中，如系统核心，外部设备，网络状态，由于数据都存放于内存中，所以不占用磁盘空间。</td>
+</tr>
+<tr>
+<td>/root</td>
+<td>系统管理员root的宿主目录，系统第一个启动的分区为/，所以最好将/root和/放置在一个分区下。</td>
+</tr>
+<tr>
+<td>/sbin，/usr/sbin，/usr/local/sbin</td>
+<td>放置系统管理员使用的可执行命令，如fdisk、shutdown、mount等。与/bin不同的是，这几个目录是给系统管理员root使用的命令，一般用户只能"查看"而不能设置和使用。</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>存放系统产生的临时文件，因此重要文件不要放在此目录下。</td>
+</tr>
+<tr>
+<td>/srv</td>
+<td>服务启动之后需要访问的数据目录，如www服务需要访问的网页数据存放在/srv/www内。</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>应用程序存放目录，/usr/bin 存放应用程序， /usr/share 存放共享数据，/usr/lib 存放不能直接运行的，却是许多程序运行所必需的一些函数库文件，/usr/local 存放软件升级包，/usr/share/doc 系统说明文件存放目录。</td>
+</tr>
+<tr>
+<td>/usr/share/man</td>
+<td>程序说明文件存放目录，使用 man ls时会查询/usr/share/man/man1/ls.1.gz的内容。建议单独分区，设置较大的磁盘空间。</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>放置系统执行过程中经常变化的文件，如随时更改的日志文件 /var/log。</td>
+</tr>
+<tr>
+<td>/sys</td>
+<td>这个目录其实跟/proc非常类似，也是一个虚拟的档案系统，主要也是记录与核心相关的资讯。 包括目前已载入的核心模组与核心侦测到的硬体装置资讯等等。 这个目录同样不占硬盘容量。</td>
+</tr>
+<tr>
+<td>.</td>
+<td>代表当前的目录，也可以使用 ./ 来表示；</td>
+</tr>
+<tr>
+<td>..</td>
+<td>代表上一层目录，也可以 ../ 来代表。</td>
+</tr>
+</tbody>
+</table>
+<h3>绝对路径与相对路径</h3>
+<p>在访问文件或目录时，会涉及到所谓的路径。我们根据写法的不同来分成绝对路径(absolute)与相对路径(relative)。</p>
+<blockquote>
+<p>绝对路径：由根目录(/)开始写起的文件名或目录名称。例如 /home/hyxy/.bashrc；
+相对路径：相对于你当前所在路径的写法。 不是以 / 开头的写法就属于相对路径的写法。</p>
+</blockquote>
+<p>举例来说，你目前在 /home/hyxy 这个目录下， 如果想要进入 /var/log 这个目录时，可以怎么写呢？</p>
+<blockquote>
+<p>cd /var/log --绝对路径写法
+cd ../../var/log --相对路径写法。因为我们的位置是/home/hyxy里，所以要回到上一层（../）到达/home/里，然后再回到上 一层(../)到达根目录，此时才能看到/var，然后向里移动。</p>
+</blockquote>
+<h3>文件类型</h3>
+<p>当我们使用命令“ll”查询文件属性时，我们会看到第一列是由10个字符组成的。而10个字符的第一个字符就表示文件类型。</p>
+<p><img alt="文件属性" src="./../images/FileAttribute.png" title="文件属性"></p>
+<table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-(f)</td>
+<td>普通文件</td>
+</tr>
+<tr>
+<td>d</td>
+<td>目录文件</td>
+</tr>
+<tr>
+<td>b</td>
+<td>块设备。就是一些储存数据，以提供系统存取的接口设备。例如你的一号硬盘的代码是 /dev/hda1。</td>
+</tr>
+<tr>
+<td>c</td>
+<td>字符文件。一些串行端口的接口设备，例如键盘、鼠标等等！</td>
+</tr>
+<tr>
+<td>l</td>
+<td>符号链接文件，分为软链接和硬链接。类似于windows系统的快捷方式。</td>
+</tr>
+<tr>
+<td>p</td>
+<td>管道文件，FIFO也是一种特殊的文件类型，它主要的目的是，解决多个程序同时存取一个文件所造成的错误。</td>
+</tr>
+<tr>
+<td>s</td>
+<td>套接字文件，socket。如启动一个MySql服务器时产生的一个mysql.sock文件。</td>
+</tr>
+</tbody>
+</table>
+<h3>查看文件类型的三种方法</h3>
+<p>方法1：ls -l或者ll
+方法2：file命令
+方法3：stat命令</p>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="./category/commonknowledge.html">Commonknowledge</a></li>
+    <li><a href="./category/physics.html">Physics</a></li>
+  </ul>
+
+
+<h4>Tags</h4>
+	<ul class="blank">
+	    <li class="tag-4"><a href="./tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="./tag/physics.html">Physics</a></li>
+	    <li class="tag-4"><a href="./tag/python.html">Python</a></li>
+	    <li class="tag-1"><a href="./tag/blog.html">blog</a></li>
+	    <li class="tag-4"><a href="./tag/latex.html">LaTex</a></li>
+	    <li class="tag-4"><a href="./tag/linux.html">Linux</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="https://youareeverysingleday.github.io">GitHub</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://youareeverysingleday.github.io" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="./theme/js/libs/gumby.min.js"></script>
+  <script src="./theme/js/plugins.js"></script>
+</body>
+</html>
