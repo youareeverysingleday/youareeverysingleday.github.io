@@ -93,6 +93,7 @@ Author: youareeverysingleday
 1. 入门参考。它是使用python编译的，并且支持markdown。<https://zhuanlan.zhihu.com/p/55603083>。
 2. 重要参考2<https://zhuanlan.zhihu.com/p/614277442>。
    1. 这个参考更详细：<https://maxwell-nc.github.io/blog/pelicanBuildBlog.html>。
+   2. 这个参考有深度，包含了如何让搜索引擎搜索和Google Analytics的内容<https://www.cnblogs.com/cciejh/p/blog_building.html>。感觉Google Analytics主要用于开店的，展示不使用。
 3. 操作参考<https://jlhxxxx.github.io/pelican-github.html>。
 4. 中文pelican手册<https://www.osgeo.cn/pelican/plugins.html>。
 5. 需要添加pelican-plusin
@@ -133,4 +134,5 @@ Author: youareeverysingleday
       - indexes, the update frequency of the index pages
       Valid frequency values are always, hourly, daily, weekly, monthly, yearly and never.
    - exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. 
+10. google站长工具使用参考<https://zhuanlan.zhihu.com/p/432637356>。
 

@@ -599,6 +599,7 @@ cd ../../var/log --相对路径写法。因为我们的位置是/home/hyxy里，
 &lt;li&gt;入门参考。它是使用python编译的，并且支持markdown。&lt;a href="https://zhuanlan.zhihu.com/p/55603083"&gt;https://zhuanlan.zhihu.com/p/55603083&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;重要参考2&lt;a href="https://zhuanlan.zhihu.com/p/614277442"&gt;https://zhuanlan.zhihu.com/p/614277442&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;这个参考更详细：&lt;a href="https://maxwell-nc.github.io/blog/pelicanBuildBlog.html"&gt;https://maxwell-nc.github.io/blog/pelicanBuildBlog.html&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;这个参考有深度，包含了如何让搜索引擎搜索和Google Analytics的内容&lt;a href="https://www.cnblogs.com/cciejh/p/blog_building.html"&gt;https://www.cnblogs.com/cciejh/p/blog_building.html&lt;/a&gt;。感觉Google Analytics主要用于开店的，展示不使用。&lt;/li&gt;
 &lt;li&gt;操作参考&lt;a href="https://jlhxxxx.github.io/pelican-github.html"&gt;https://jlhxxxx.github.io/pelican-github.html&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;中文pelican手册&lt;a href="https://www.osgeo.cn/pelican/plugins.html"&gt;https://www.osgeo.cn/pelican/plugins.html&lt;/a&gt;。&lt;/li&gt;
 &lt;li&gt;需要添加pelican-plusin&lt;/li&gt;
@@ -648,6 +649,7 @@ cd ../../var/log --相对路径写法。因为我们的位置是/home/hyxy里，
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. &lt;/li&gt;
+&lt;li&gt;google站长工具使用参考&lt;a href="https://zhuanlan.zhihu.com/p/432637356"&gt;https://zhuanlan.zhihu.com/p/432637356&lt;/a&gt;。&lt;/li&gt;
 &lt;/ol&gt;</content><category term="Commonknowledge"></category><category term="blog"></category><category term="pelican"></category></entry><entry><title>Python基础知识</title><link href="https://youareeverysingleday.github.io/python-foundation.html" rel="alternate"></link><published>2022-08-19T00:00:00+02:00</published><updated>2022-08-19T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2022-08-19:/python-foundation.html</id><summary type="html">&lt;h2&gt;1 Python编程基础概念&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;5种基本对象类型。&lt;/li&gt;
