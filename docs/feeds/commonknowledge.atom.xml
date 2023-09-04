@@ -620,6 +620,34 @@ cd ../../var/log --相对路径写法。因为我们的位置是/home/hyxy里，
 &lt;/li&gt;
 &lt;li&gt;插件plugins：&lt;a href="https://github.com/getpelican/pelican-plugins"&gt;https://github.com/getpelican/pelican-plugins&lt;/a&gt;。很多模板都需要安装了插件之后才能使用完整功能。&lt;/li&gt;
 &lt;li&gt;markdown显示latex插件：&lt;a href="https://github.com/kitelife/pelican_plugin-latex/"&gt;https://github.com/kitelife/pelican_plugin-latex/&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;让bing和google能够搜索到blog。&lt;/li&gt;
+&lt;li&gt;bing&lt;ol&gt;
+&lt;li&gt;打开bing webmaster&lt;a href="https://www.bing.com/webmasters/home"&gt;https://www.bing.com/webmasters/home&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;登录bing。&lt;/li&gt;
+&lt;li&gt;使用在页面中添加标记的方式验证。修改生成的index.html，在&lt;body&gt;之前的&lt;head&gt;中添加&lt;meta name="msvalidate.01" content="AAAA" /&gt;代码作为验证标识。让bing webmaster验证即可。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;google&lt;ol&gt;
+&lt;li&gt;&lt;meta name="google-site-verification" content="EEEE" /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;生成网站地图。使用的是sitemap插件。在pelicanconf.py中设置sitemap的含义如下：The SITEMAP setting must be a Python dictionary and can contain these keys:&lt;/li&gt;
+&lt;li&gt;format, which sets the output format of the plugin (xml or txt)&lt;/li&gt;
+&lt;li&gt;priorities, which is a dictionary with three keys:&lt;ul&gt;
+&lt;li&gt;articles, the priority for the URLs of the articles and their translations&lt;/li&gt;
+&lt;li&gt;pages, the priority for the URLs of the static pages&lt;/li&gt;
+&lt;li&gt;indexes, the priority for the URLs of the index pages, such as tags, author pages, categories indexes, archives, etc.
+  All the values of this dictionary must be decimal numbers between 0 and 1.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;changefreqs, which is a dictionary with three items:&lt;ul&gt;
+&lt;li&gt;articles, the update frequency of the articles&lt;/li&gt;
+&lt;li&gt;pages, the update frequency of the pages&lt;/li&gt;
+&lt;li&gt;indexes, the update frequency of the index pages
+  Valid frequency values are always, hourly, daily, weekly, monthly, yearly and never.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. &lt;/li&gt;
 &lt;/ol&gt;</content><category term="Commonknowledge"></category><category term="blog"></category><category term="pelican"></category></entry><entry><title>Python基础知识</title><link href="https://youareeverysingleday.github.io/python-foundation.html" rel="alternate"></link><published>2022-08-19T00:00:00+02:00</published><updated>2022-08-19T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2022-08-19:/python-foundation.html</id><summary type="html">&lt;h2&gt;1 Python编程基础概念&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;5种基本对象类型。&lt;/li&gt;

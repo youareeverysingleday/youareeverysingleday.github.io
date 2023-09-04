@@ -61,9 +61,24 @@ PLUGIN_PATHS = ['plugins']
 # tag in their metadata; instead, they should be stored in 
 # (subdirectories of) per-category directories.”
 # 也就是说要求md文件中不能含有Category元数据。这个要求很奇怪。
-PLUGINS = ['tag_cloud', 'more_categories', 'autopages']
+PLUGINS = ['tag_cloud', 'more_categories', 'autopages', 'sitemap']
 # 设置需要取的静态文件（图片）的路径。
 STATIC_PATHS = ['images']
+
+# 设置站点地图。
+SITEMAP = {
+    "format": "xml",
+    "priorities": {
+        "articles": 0.7,
+        "indexes": 0.5,
+        "pages": 0.3,
+    },
+    "changefreqs": {
+        "articles": "monthly",
+        "indexes": "monthly",
+        "pages": "monthly",
+    }
+}
 
 # 包含日志记录级别的元组列表（最多 warning )以及要忽略的信息。
 import logging

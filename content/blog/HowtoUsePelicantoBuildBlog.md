@@ -113,4 +113,24 @@ Author: youareeverysingleday
       7. <https://pelicanthemes.com/notmyidea-cms-fr/>可以，主要是背景颜色不太喜欢。
 7. 插件plugins：<https://github.com/getpelican/pelican-plugins>。很多模板都需要安装了插件之后才能使用完整功能。
    1. markdown显示latex插件：<https://github.com/kitelife/pelican_plugin-latex/>。
+8. 让bing和google能够搜索到blog。
+   1. bing
+      1. 打开bing webmaster<https://www.bing.com/webmasters/home>。
+      2. 登录bing。
+      3. 使用在页面中添加标记的方式验证。修改生成的index.html，在<body>之前的<head>中添加<meta name="msvalidate.01" content="AAAA" />代码作为验证标识。让bing webmaster验证即可。
+   2. google
+      1. <meta name="google-site-verification" content="EEEE" />
+9. 生成网站地图。使用的是sitemap插件。在pelicanconf.py中设置sitemap的含义如下：The SITEMAP setting must be a Python dictionary and can contain these keys:
+   - format, which sets the output format of the plugin (xml or txt)
+   - priorities, which is a dictionary with three keys:
+      - articles, the priority for the URLs of the articles and their translations
+      - pages, the priority for the URLs of the static pages
+      - indexes, the priority for the URLs of the index pages, such as tags, author pages, categories indexes, archives, etc.
+      All the values of this dictionary must be decimal numbers between 0 and 1.
+   - changefreqs, which is a dictionary with three items:
+      - articles, the update frequency of the articles
+      - pages, the update frequency of the pages
+      - indexes, the update frequency of the index pages
+      Valid frequency values are always, hourly, daily, weekly, monthly, yearly and never.
+   - exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. 
 
