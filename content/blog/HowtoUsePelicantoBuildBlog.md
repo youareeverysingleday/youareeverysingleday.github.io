@@ -66,6 +66,13 @@ Author: youareeverysingleday
 5. 暂时不使用category_meta插件。因为这个插件的使用要求：“our articles should not have a Category: tag in their metadata; instead, they should be stored in (subdirectories of) per-category directories.” 也就是说要求md文件中不能含有Category元数据。这个要求很奇怪。
 6. favicon.ico放在output（也就是生成最终静态页面的目录下）的根目录下。这样就不会报：“WARNING  Unable to find `/favicon.ico` or variations: ”的错误了。
 7. 注意在使用了图片的文章里面需要修改图片的引用路径。
+8. 使用pandoc将markdown转换为word。
+   1. pandoc下载：<https://github.com/jgm/pandoc/releases/tag/3.1.7>
+   2. 官方网站：<https://pandoc.org/installing.html>
+   3. 转化命令需要在pandoc.exe所在目录下使用。转换命令为：pandoc.exe test.md -f markdown -t docx -s -o test.docx  
+   4. 命令说明：文件名 test.md 是要转换的源文件；-f 设置输入文件的格式；-t 设置输出文件的格式；-s 表示创建一个“独立”文件，将会生成文件页眉和页脚。默认的转换格式为 markdown 到 word，所以上面的命令也可以省略这两个选项。
+   5. pandoc将markdow转化为word时太复杂的公式和符号无法转换。
+
 
 ## problems
 
