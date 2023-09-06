@@ -679,7 +679,14 @@ cd ../../var/log --相对路径写法。因为我们的位置是/home/hyxy里，
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. &lt;/li&gt;
-&lt;li&gt;google站长工具使用参考&lt;a href="https://zhuanlan.zhihu.com/p/432637356"&gt;https://zhuanlan.zhihu.com/p/432637356&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;google站长工具使用参考&lt;a href="https://zhuanlan.zhihu.com/p/432637356"&gt;https://zhuanlan.zhihu.com/p/432637356&lt;/a&gt;。参考价值不高。&lt;/li&gt;
+&lt;li&gt;使用Google Analytics&lt;a href="https://www.kovlala.fun/2021/08/Howto-use-google-analytics-with-Python-Pelican.html"&gt;https://www.kovlala.fun/2021/08/Howto-use-google-analytics-with-Python-Pelican.html&lt;/a&gt;。好的参考。&lt;ol&gt;
+&lt;li&gt;登录到 Google Analytics，创建账号，生成新的Property。&lt;/li&gt;
+&lt;li&gt;使用 MEASUREMENT ID写入pelicanconf.py中。设置GOOGLE_ANALYTICS_ID = 'XXXXXX'变量。&lt;/li&gt;
+&lt;li&gt;修改Theme中base.html文件。添加Google Analytics中提供的js代码。&lt;/li&gt;
+&lt;li&gt;设置完成，更新线上Pelican的Article，约0.5小时后可登录GA后台查看结果。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
 &lt;/ol&gt;</content><category term="Commonknowledge"></category><category term="blog"></category><category term="pelican"></category></entry><entry><title>Python基础知识</title><link href="https://youareeverysingleday.github.io/python-foundation.html" rel="alternate"></link><published>2022-08-19T00:00:00+02:00</published><updated>2022-08-19T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2022-08-19:/python-foundation.html</id><summary type="html">&lt;h2&gt;1 Python编程基础概念&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;5种基本对象类型。&lt;/li&gt;

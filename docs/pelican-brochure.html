@@ -4,6 +4,15 @@
 
         <title>如何使用Pelican创建一个博客</title>
         <meta charset="utf-8" />
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZN76F9MXF"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-MZN76F9MXF');
+        </script>
         <link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Full Atom Feed" />
         <link href="https://youareeverysingleday.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Coder Full RSS Feed" />
         <link href="https://youareeverysingleday.github.io/feeds/commonknowledge.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Categories Atom Feed" />
@@ -19,6 +28,16 @@
         <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
 
 
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-MZN76F9MXF', '');
+                ga('send', 'pageview');
+
+              </script>
 
 
 </head>
@@ -418,7 +437,14 @@
 </ul>
 </li>
 <li>exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. </li>
-<li>google站长工具使用参考<a href="https://zhuanlan.zhihu.com/p/432637356">https://zhuanlan.zhihu.com/p/432637356</a>。</li>
+<li>google站长工具使用参考<a href="https://zhuanlan.zhihu.com/p/432637356">https://zhuanlan.zhihu.com/p/432637356</a>。参考价值不高。</li>
+<li>使用Google Analytics<a href="https://www.kovlala.fun/2021/08/Howto-use-google-analytics-with-Python-Pelican.html">https://www.kovlala.fun/2021/08/Howto-use-google-analytics-with-Python-Pelican.html</a>。好的参考。<ol>
+<li>登录到 Google Analytics，创建账号，生成新的Property。</li>
+<li>使用 MEASUREMENT ID写入pelicanconf.py中。设置GOOGLE_ANALYTICS_ID = 'XXXXXX'变量。</li>
+<li>修改Theme中base.html文件。添加Google Analytics中提供的js代码。</li>
+<li>设置完成，更新线上Pelican的Article，约0.5小时后可登录GA后台查看结果。</li>
+</ol>
+</li>
 </ol>
             </div><!-- /.entry-content -->
 
@@ -441,12 +467,12 @@
 
 <h4>Tags</h4>
 	<ul class="blank">
+	    <li class="tag-4"><a href="./tag/latex.html">LaTex</a></li>
+	    <li class="tag-4"><a href="./tag/python.html">Python</a></li>
+	    <li class="tag-4"><a href="./tag/pelican.html">pelican</a></li>
+	    <li class="tag-4"><a href="./tag/linux.html">Linux</a></li>
 	    <li class="tag-1"><a href="./tag/blog.html">blog</a></li>
 	    <li class="tag-4"><a href="./tag/physics.html">Physics</a></li>
-	    <li class="tag-4"><a href="./tag/pelican.html">pelican</a></li>
-	    <li class="tag-4"><a href="./tag/python.html">Python</a></li>
-	    <li class="tag-4"><a href="./tag/latex.html">LaTex</a></li>
-	    <li class="tag-4"><a href="./tag/linux.html">Linux</a></li>
 </ul>
 
 

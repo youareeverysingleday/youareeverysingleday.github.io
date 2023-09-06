@@ -141,5 +141,10 @@ Author: youareeverysingleday
       - indexes, the update frequency of the index pages
       Valid frequency values are always, hourly, daily, weekly, monthly, yearly and never.
    - exclude, which is a list of regular expressions that will be used to exclude matched URLs from the sitemap if any of them match. 
-10. google站长工具使用参考<https://zhuanlan.zhihu.com/p/432637356>。
+10. google站长工具使用参考<https://zhuanlan.zhihu.com/p/432637356>。参考价值不高。
+11. 使用Google Analytics<https://www.kovlala.fun/2021/08/Howto-use-google-analytics-with-Python-Pelican.html>。好的参考。
+    1. 登录到 Google Analytics，创建账号，生成新的Property。
+    2. 使用 MEASUREMENT ID写入pelicanconf.py中。设置GOOGLE_ANALYTICS_ID = 'XXXXXX'变量。
+    3. 修改Theme中base.html文件。添加Google Analytics中提供的js代码。
+    4. 设置完成，更新线上Pelican的Article，约0.5小时后可登录GA后台查看结果。
 

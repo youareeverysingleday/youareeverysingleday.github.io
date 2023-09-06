@@ -80,6 +80,9 @@ SITEMAP = {
     }
 }
 
+# 使用google anlytics分析网站数据。
+GOOGLE_ANALYTICS_ID = 'G-MZN76F9MXF'
+
 # 包含日志记录级别的元组列表（最多 warning )以及要忽略的信息。
 import logging
 LOG_FILTER = [(logging.WARN, 'TAG_SAVE_AS is set to False')]
