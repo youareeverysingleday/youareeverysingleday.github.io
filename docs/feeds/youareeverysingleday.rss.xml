@@ -2,7 +2,16 @@
 <rss version="2.0"><channel><title>Coder - youareeverysingleday</title><link>https://youareeverysingleday.github.io/</link><description>You are every single day.</description><lastBuildDate>Thu, 31 Aug 2023 00:00:00 +0200</lastBuildDate><item><title>Linux使用经验</title><link>https://youareeverysingleday.github.io/Linux-Common-Experience.html</link><description>&lt;h2&gt;Experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;使用Ubuntu server版本下载地址&lt;a href="https://cn.ubuntu.com/server"&gt;https://cn.ubuntu.com/server&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p/373773218&lt;/a&gt;。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要 …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Thu, 31 Aug 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-08-31:/Linux-Common-Experience.html</guid><category>Commonknowledge</category><category>blog</category><category>Linux</category></item><item><title>如何使用Pelican创建一个博客</title><link>https://youareeverysingleday.github.io/pelican-brochure.html</link><description>&lt;h2&gt;experience&lt;/h2&gt;
+&lt;li&gt;ubuntu server安装图形界面&lt;a href="https://zhuanlan.zhihu.com/p/373773218"&gt;https://zhuanlan.zhihu.com/p/373773218&lt;/a&gt;。如果你是出于学习和调研等实验性的目的，那么你可以进行这些操作。请不要 …&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Thu, 31 Aug 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-08-31:/Linux-Common-Experience.html</guid><category>Commonknowledge</category><category>blog</category><category>Linux</category></item><item><title>部署Nvidia，TensorFlow，Python开发环境</title><link>https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html</link><description>&lt;h2&gt;Understanding&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA是nvidia的机器学习驱动。&lt;/li&gt;
+&lt;li&gt;cuDNN相当于是CUDA在深度学习上的补丁。cuDNN其实是CUDA的一个补丁，专为深度学习运算进行优化的。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA安装&lt;a href="https://blog.csdn.net/h3c4lenovo/article/details/119003405"&gt;https://blog.csdn.net/h3c4lenovo/article/details/119003405&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;windows安装步骤参考很清晰&lt;a href="https://www.bilibili.com/video/BV1rd4y187nM"&gt;https://www.bilibili.com/video/BV1rd4y187nM&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;Linux下的tensorflow, CUDA, cuDNN版本对应情况。官方建议构建配置：&lt;a href="https://tensorflow.google.cn/install/source?hl=zh-cn"&gt;https://tensorflow.google.cn/install …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Fri, 11 Aug 2023 00:00:00 +0200</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-08-11:/Deploy-GPU-TensorFlow-Environment.html</guid><category>Commonknowledge</category><category>blog</category><category>TensorFlow</category><category>Python</category><category>Nvidia</category><category>CUDA</category><category>cuDNN</category></item><item><title>如何使用Pelican创建一个博客</title><link>https://youareeverysingleday.github.io/pelican-brochure.html</link><description>&lt;h2&gt;experience&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;常用命令，&lt;/li&gt;
 &lt;li&gt;命令参考&lt;a href="https://www.osgeo.cn/pelican/"&gt;https://www.osgeo.cn/pelican/&lt;/a&gt;。&lt;/li&gt;
