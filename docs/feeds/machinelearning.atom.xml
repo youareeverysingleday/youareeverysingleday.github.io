@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Coder - MachineLearning</title><link href="https://youareeverysingleday.github.io/" rel="alternate"></link><link href="https://youareeverysingleday.github.io/feeds/machinelearning.atom.xml" rel="self"></link><id>https://youareeverysingleday.github.io/</id><updated>2023-09-22T00:00:00+02:00</updated><subtitle>You are every single day.</subtitle><entry><title>部署Nvidia，TensorFlow，Python开发环境</title><link href="https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html" rel="alternate"></link><published>2023-09-22T00:00:00+02:00</published><updated>2023-09-22T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-09-22:/Deploy-GPU-TensorFlow-Environment.html</id><summary type="html">&lt;h2&gt;Understanding&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA是nvidia的机器学习驱动。&lt;/li&gt;
+&lt;li&gt;cuDNN相当于是CUDA在深度学习上的补丁。cuDNN其实是CUDA的一个补丁，专为深度学习运算进行优化的。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA安装&lt;a href="https://blog.csdn.net/h3c4lenovo/article/details/119003405"&gt;https://blog.csdn.net/h3c4lenovo/article/details/119003405&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;windows安装步骤参考很清晰&lt;a href="https://www.bilibili.com/video/BV1rd4y187nM"&gt;https://www.bilibili.com/video/BV1rd4y187nM&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;Linux下的tensorflow, CUDA, cuDNN版本对应情况。官方建议构建配置：&lt;a href="https://tensorflow.google.cn/install/source?hl=zh-cn"&gt;https://tensorflow.google.cn/install …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h2&gt;Understanding&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA是nvidia的机器学习驱动。&lt;/li&gt;
+&lt;li&gt;cuDNN相当于是CUDA在深度学习上的补丁。cuDNN其实是CUDA的一个补丁，专为深度学习运算进行优化的。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA安装&lt;a href="https://blog.csdn.net/h3c4lenovo/article/details/119003405"&gt;https://blog.csdn.net/h3c4lenovo/article/details/119003405&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;windows安装步骤参考很清晰&lt;a href="https://www.bilibili.com/video/BV1rd4y187nM"&gt;https://www.bilibili.com/video/BV1rd4y187nM&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;Linux下的tensorflow, CUDA, cuDNN版本对应情况。官方建议构建配置：&lt;a href="https://tensorflow.google.cn/install/source?hl=zh-cn"&gt;https://tensorflow.google.cn/install/source?hl=zh-cn&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;安装步骤&lt;/h2&gt;
+&lt;h3&gt;Linux环境&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Linux配置环境对应关系。
+    20230920查询结果(只显示了Python3和TensorFlow2以上的对应关系)。可以看到CUDA能够支持的最新tensorflow的版本为2.6.0，Python的版本为3.9。所以不能安装最新的tensorflow和python版本。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;Python&lt;/th&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;编译器&lt;/th&gt;
+&lt;th&gt;构建工具&lt;/th&gt;
+&lt;th&gt;cuDNN&lt;/th&gt;
+&lt;th&gt;CUDA&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;tensorflow-2.6.0&lt;/td&gt;
+&lt;td&gt;3.6-3.9&lt;/td&gt;
+&lt;td&gt;GCC 7.3.1&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Bazel 3.7.2&lt;/td&gt;
+&lt;td&gt;8.1&lt;/td&gt;
+&lt;td&gt;11.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tensorflow-2.5.0&lt;/td&gt;
+&lt;td&gt;3.6-3.9&lt;/td&gt;
+&lt;td&gt;GCC 7.3.1&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Bazel 3.7.2&lt;/td&gt;
+&lt;td&gt;8.1&lt;/td&gt;
+&lt;td&gt;11.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tensorflow-2.4.0&lt;/td&gt;
+&lt;td&gt;3.6-3.8&lt;/td&gt;
+&lt;td&gt;GCC 7.3.1&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Bazel 3.1.0&lt;/td&gt;
+&lt;td&gt;8.0&lt;/td&gt;
+&lt;td&gt;11.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tensorflow-2.3.0&lt;/td&gt;
+&lt;td&gt;3.5-3.8&lt;/td&gt;
+&lt;td&gt;GCC 7.3.1&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Bazel 3.1.0&lt;/td&gt;
+&lt;td&gt;7.6&lt;/td&gt;
+&lt;td&gt;10.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;tensorflow-2.2.0&lt;/td&gt;
+&lt;td&gt;3.5-3.8&lt;/td&gt;
+&lt;td&gt;GCC 7.3.1&lt;/td&gt;
+&lt;td&gt;2019&lt;/td&gt;
+&lt;td&gt;Bazel 2.0.0&lt;/td&gt;
+&lt;td&gt;7.6&lt;/td&gt;
+&lt;td&gt;10.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2. 查看是否安装显卡&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```shell&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;lspci&lt;/td&gt;
+&lt;td&gt;grep -i nvidia&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;显示的信息如下：&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```log&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;04:00.0 VGA compatible controller: NVIDIA Corporation GM206 [GeForce GTX 960] (rev a1)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;04:00.1 Audio device: NVIDIA Corporation GM206 High Definition Audio Controller (rev a1)&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3. 查看显卡信息&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```shell&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;nvidia-smi&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;如果没有安装nvidia驱动，那么显示信息如下：&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;```log&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Command 'nvidia-smi' not found, but can be installed with:&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;sudo apt install nvidia-utils-435         # version 435.21-0ubuntu7, or
+sudo apt install nvidia-utils-440         # version 440.82+really.440.64-0ubuntu6
+sudo apt install nvidia-340               # version 340.108-0ubuntu5.20.04.2
+sudo apt install nvidia-utils-390         # version 390.157-0ubuntu0.20.04.1
+sudo apt install nvidia-utils-450-server  # version 450.248.02-0ubuntu0.20.04.1
+sudo apt install nvidia-utils-470         # version 470.199.02-0ubuntu0.20.04.1
+sudo apt install nvidia-utils-470-server  # version 470.199.02-0ubuntu0.20.04.1
+sudo apt install nvidia-utils-525         # version 525.125.06-0ubuntu0.20.04.3
+sudo apt install nvidia-utils-525-server  # version 525.125.06-0ubuntu0.20.04.2
+sudo apt install nvidia-utils-535         # version 535.86.05-0ubuntu0.20.04.2
+sudo apt install nvidia-utils-535-server  # version 535.54.03-0ubuntu0.20.04.1
+sudo apt install nvidia-utils-418-server  # version 418.226.00-0ubuntu0.20.04.2
+&lt;code&gt;4. 查看可以安装的nvidia驱动版本。&lt;/code&gt;shell
+ubuntu-drivers devices
+   &lt;code&gt;显示信息如下，可以看到有一条中包含"recommended"的信息。这一条对应的就是推荐安装的驱动版本。&lt;/code&gt;log
+== /sys/devices/pci0000:00/0000:00:1c.4/0000:04:00.0 ==
+modalias : pci:v000010DEd00001401sv00001458sd000036B9bc03sc00i00
+vendor   : NVIDIA Corporation
+model    : GM206 [GeForce GTX 960]
+driver   : nvidia-driver-525-server - distro non-free
+driver   : nvidia-driver-535-server - distro non-free
+driver   : nvidia-driver-418-server - distro non-free
+driver   : nvidia-driver-535 - distro non-free recommended
+driver   : nvidia-driver-470-server - distro non-free
+driver   : nvidia-driver-525 - distro non-free
+driver   : nvidia-driver-470 - distro non-free
+driver   : nvidia-driver-390 - distro non-free
+driver   : nvidia-driver-450-server - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+   &lt;code&gt;6. 安装驱动源&lt;/code&gt;shell
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+   &lt;code&gt;7. 安装驱动
+推荐使用该命令来更新nvidia驱动。&lt;/code&gt;shell
+sudo apt install nvidia-driver-XXX
+&lt;code&gt;&lt;/code&gt;shell
+sudo ubuntu-drivers autoinstall
+&lt;code&gt;这个命令会将所有合适的驱动都更新。不建议使用。
+8. 安装完驱动之后需要将ubuntu重启，然后再用nvidia-smi查看显卡信息。
+9. Ubuntu 20.04默认g++9版本太高，会导致CUDA无法安装，因此要先降低g++版本。
+   1. 查看gcc版本。&lt;/code&gt;shell
+    gcc -v
+    &lt;code&gt;原始ubuntu的使用的gcc的版本是9.4.0。
+2. 降低gcc版本。&lt;/code&gt;shell
+    sudo apt-get install gcc-7 g++-7&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 9
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 1
+
+sudo update-alternatives --display gcc
+
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 9
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 1
+
+sudo update-alternatives --display g++
+```
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+&lt;li&gt;下载对应的CUDA&lt;/li&gt;
+&lt;li&gt;查看ubuntu下CPU的架构：
+    &lt;code&gt;shell
+    uname -m&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;这里下载的是CUDA Toolkit 11.2.2版本。选择runfile文件下载。
+    &lt;code&gt;shell
+    sudo wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.run
+    sudo sh cuda_11.2.2_460.32.03_linux.run&lt;/code&gt;
+    第一句是下载cuda。第二句是安装。需要注意的是gcc版本已经降低了才能正常安装。&lt;/li&gt;
+&lt;li&gt;在运行了sudo sh cuda_11.2.2_460.32.03_linux.run之后会出现需要选择的选项：&lt;/li&gt;
+&lt;li&gt;选择Continue。&lt;img alt="第一次选择" src="../images/InstallCUDASelectionPage1.png"&gt; &lt;/li&gt;
+&lt;li&gt;填入accept。&lt;img alt="第二次选择" src="../images/InstallCUDASelectionPage2.png"&gt; &lt;/li&gt;
+&lt;li&gt;因为之前已经安装的nvidia的驱动，所以这里不用再选在Driver选项。其中CUDA Toolkit 11.2是必须的，其他的可选。这里是都选了。注意图片里面显示的是10.2的版本。在本机安装的是11.2版本。&lt;img alt="第三次选择" src="../images/InstallCUDASelectionPage3.png"&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在ssh端无法显示上述安装步骤。只能在本机安装。&lt;/li&gt;
+&lt;li&gt;安装的过程没有任何进度显示。只有最后安装完成之后有信息输出。过程需要大约5分钟的时间。&lt;/li&gt;
+&lt;li&gt;在没有安装成功cuda_11.2.2_460.32.03_linux.run的现象是/usr/local目录下是没有包含cuda名字的文件夹的。&lt;/li&gt;
+&lt;li&gt;之后才能对环境变量进行配置。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用nvidia-smi可以看到出现GPU信息。
+    ```log
+    +---------------------------------------------------------------------------------------+
+    | NVIDIA-SMI 535.104.05             Driver Version: 535.104.05   CUDA Version: 12.2     |
+    |-----------------------------------------+----------------------+----------------------+
+    | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+    | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+    |                                         |                      |               MIG M. |
+    |=========================================+======================+======================|
+    |   0  NVIDIA GeForce GTX 960         Off | 00000000:04:00.0 Off |                  N/A |
+    |212%   43C    P8              14W / 130W |    226MiB /  2048MiB |      0%      Default |
+    |                                         |                      |                  N/A |
+    +-----------------------------------------+----------------------+----------------------+&lt;/p&gt;
+&lt;p&gt;+---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      1258      G   /usr/lib/xorg/Xorg                           54MiB |
+|    0   N/A  N/A      1716      G   /usr/lib/xorg/Xorg                          144MiB |
+|    0   N/A  N/A      1852      G   /usr/bin/gnome-shell                          6MiB |
+|    0   N/A  N/A      3435      G   /usr/lib/firefox/firefox                      8MiB |
++---------------------------------------------------------------------------------------+
+&lt;code&gt;11. 配置环境变量
+    1. ~/.表示的路径是当前用户主目录，也就是当前登录用户的用户目录。我登录用户是chen。cd ~。这里~代表的就是/home/chen/。如果使用的是root用户（也就是sudo su之后的目录环境中），那么这里~ 代表的就是/root目录。
+    2. ctrl+H可以显示desktop文件夹中的隐藏文件。
+    3. 设置环境变量
+    4. 打开.bashrc文件&lt;/code&gt;shell
+      vim ~/.bashrc
+      &lt;code&gt;5. 最末尾添加下列内容。&lt;/code&gt;shell
+      # cuda安装位置
+      export PATH=$PATH:/usr/local/cuda-11.2/bin
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.2/lib64
+      export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda-11.2/lib64
+      &lt;code&gt;6. 使用使得环境变量生效。&lt;/code&gt;shell
+      source ~/.bashrc
+      &lt;code&gt;7. 验证是否生效。&lt;/code&gt;shell
+      nvcc -V
+      &lt;code&gt;安装成功的情况下输出信息如下：&lt;/code&gt;log
+      nvcc: NVIDIA (R) Cuda compiler driver
+      Copyright (c) 2005-2021 NVIDIA Corporation
+      Built on Sun_Feb_14_21:12:58_PST_2021
+      Cuda compilation tools, release 11.2, V11.2.152
+      Build cuda_11.2.r11.2/compiler.29618528_0
+      &lt;code&gt;在没有安装成功的情况下，会提示没有nvcc命令。系统提示：&lt;/code&gt;shell
+      Command 'nvcc' not found, but can be installed with: 
+      sudo apt install nvidia-cuda-toolkit
+      &lt;code&gt;没必要执行上述提示信息，因为在安装CUDA（cuda_11.2.2_460.32.03_linux.run）时已经选择安装了toolkit。实际上就是环境变量没有配置成功，或者配置了没有使用source ~/.bashrc来使得环境参数生效。
+      如果配置成功了会出现CUDA的版本信息。
+12. 安装cuDNN
+    1. 需要在nvidia注册。
+    2. 登录之后在&amp;lt;https://developer.nvidia.com/rdp/cudnn-archive&amp;gt;下载。
+    3. 需要科学上网下载打开页面。然后不用科学上网的情况下载地址为：&amp;lt;https://developer.nvidia.com/compute/machine-learning/cudnn/secure/8.1.1.33/11.2_20210301/cudnn-11.2-linux-x64-v8.1.1.33.tgz&amp;gt;。
+    4. 下载地址有租期。过期之后无法继续下载。在科学上网的情况下很容易中途下载失败。基本上要求5分钟之内下载完成。
+    5. 下载完成之后解压。
+    6. 使用下列命令将解压出来的目录覆盖到11.5中配置的环境变量目录下。&lt;/code&gt;shell
+      sudo cp -i /home/[Account]/Downloads/cudnn-11.2-linux-x86-v8.1.1.33/cuda/include/&lt;em&gt; /usr/local/cuda-11.2/include/
+      sudo cp -i /home/[Account]/Downloads/cudnn-11.2-linux-x86-v8.1.1.33/cuda/lib64/&lt;/em&gt; /usr/local/cuda-11.2/lib64/
+      ```
+      cp -i参数表示是碰到相同文件名的文件需要询问用户具体如何操作。*表示源目录下的所有文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;后面一步说需要赋权，但并不知道具体的含义是什么。
+  &lt;code&gt;shell
+  sudo chmod a+r /usr/local/cuda-11.2/include/cudnn.h
+  sudo chmod a+r /usr/local/cuda-11.2/lib64/libcudnn*&lt;/code&gt;
+7. 查看cudnn的版本
+  &lt;code&gt;shell
+  cat /usr/local/cuda-11.2/include/cudnn_version.h | grep CUDNN_MAJOR -A 2&lt;/code&gt;
+13. 测试
+1. 测试代码
+  &lt;code&gt;python
+  import tensorflow as tf
+  from tensorflow.python.client import device_lib
+  print(device_lib.list_local_devices())
+  print(tf.test.is_gpu_available())&lt;/code&gt;
+2. 直接在当前情况下使用会报错报错内容为
+  &lt;code&gt;log
+  If you cannot immediately regenerate your protos. some other possible workaround are:
+  1. Downgrade the protobuf package to 3.20.x or lower.
+  2. Set PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python (but this will use pure-Python parsing and will be much slower).&lt;/code&gt;
+  参考解决方法：&lt;a href="https://blog.csdn.net/qq_19313495/article/details/125049344"&gt;https://blog.csdn.net/qq_19313495/article/details/125049344&lt;/a&gt;。
+  解决方法：将pip3中安装的protobuf包由当前4.24.3版本降低为3.20.3版本既可以解决该报错。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Completed.&lt;/p&gt;
+&lt;h3&gt;windows环境&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;anaconda&lt;/li&gt;
+&lt;li&gt;官网: &lt;a href="https://www.anaconda.com/"&gt;https://www.anaconda.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;添加3个环境变量。&lt;ol&gt;
+&lt;li&gt;C:\ProgramData\Anaconda3&lt;/li&gt;
+&lt;li&gt;C:\ProgramData\Anaconda3\Library&lt;/li&gt;
+&lt;li&gt;C:\ProgramData\Anaconda3\Scripts&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;配置虚拟环境。视频中推荐使用python3.8版本。&lt;ol&gt;
+&lt;li&gt;创建名为“test-tf”的conda虚拟环境：conda create --name test-tf python=3.8.15&lt;/li&gt;
+&lt;li&gt;进入名为“test-tf”的conda虚拟环境：conda activate test-tf&lt;/li&gt;
+&lt;li&gt;列出所有conda虚拟环境；conda env list&lt;/li&gt;
+&lt;li&gt;退出当前的conda虚拟环境：conda deactivate&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;install IDE。自行选择。&lt;/li&gt;
+&lt;li&gt;install CUDA&lt;/li&gt;
+&lt;li&gt;严格按照官网建议对应的版本下载安装：&lt;a href="https://developer.nvidia.com/cuda-toolkit-archive"&gt;https://developer.nvidia.com/cuda-toolkit-archive&lt;/a&gt;。版本对应关系看本部分的最后。&lt;/li&gt;
+&lt;li&gt;reference 1 中推荐的是11.8版本。&lt;/li&gt;
+&lt;li&gt;安装时取消安装Display Driver和visual studio intergration。之后直接下一步即可。&lt;/li&gt;
+&lt;li&gt;如果修改了安装路径，一定要记清楚，后面有用。&lt;/li&gt;
+&lt;li&gt;CUDA参考手册&lt;a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html"&gt;https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;install cuDNN&lt;/li&gt;
+&lt;li&gt;cuDNN是针对神经网络的加速库。实际上相当于是CUDA的补丁。&lt;/li&gt;
+&lt;li&gt;官方地址&lt;a href="https://developer.nvidia.com/rdp/cudnn-archive"&gt;https://developer.nvidia.com/rdp/cudnn-archive&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;下载cuDNN需要nvidia的账号。&lt;/li&gt;
+&lt;li&gt;解压下载好的安装包，将其复制粘贴到CUDA的根目录。如果有重复文件覆盖即可。&lt;/li&gt;
+&lt;li&gt;添加环境变量&lt;ol&gt;
+&lt;li&gt;CUDA的安装路径&lt;ol&gt;
+&lt;li&gt;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\bin&lt;/li&gt;
+&lt;li&gt;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\libnvvp&lt;/li&gt;
+&lt;li&gt;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\include&lt;/li&gt;
+&lt;li&gt;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\CUPTI\lib64&lt;/li&gt;
+&lt;li&gt;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\lib&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;C:\Program Files\NVIDIA Corporation\Nsight Compute 2020.3.0\&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;检查CUDA配置&lt;/li&gt;
+&lt;li&gt;命令：nvcc -V&lt;ol&gt;
+&lt;li&gt;可以看到相关的CUDA版本信息。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;测试命令，共2个。&lt;ol&gt;
+&lt;li&gt;首先进入:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\extras\demo_suite 目录下。&lt;/li&gt;
+&lt;li&gt;.\bandwidthTest.exe&lt;/li&gt;
+&lt;li&gt;.\deviceQuery.exe&lt;/li&gt;
+&lt;li&gt;如果上述2个命令最后都显示输出"Result = PASS"字样。表示CUDA配置成功。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Install Tensorflow&lt;/li&gt;
+&lt;li&gt;需要和CUDA的版本对应。&lt;/li&gt;
+&lt;li&gt;进入之前在conda中创建的虚拟环境：conda activate test-tf&lt;/li&gt;
+&lt;li&gt;pip install tensorflow==2.6.0&lt;/li&gt;
+&lt;li&gt;不需要安装tensorflow-gpu，在安装tensorflow的时候会自动调用GPU进行加速。&lt;/li&gt;
+&lt;li&gt;在执行代码的时候查看一下任务管理其就可以知道是哪个模块在运行。&lt;/li&gt;
+&lt;li&gt;check keras vision&lt;/li&gt;
+&lt;li&gt;pip install tensorflow==2.6.0直接安装会看到keras是2.11.0版，需要将keras与tensorflow的版本保持一致。&lt;/li&gt;
+&lt;li&gt;重新安装keras，并选择版本：pip install keras==2.6.0 。&lt;/li&gt;
+&lt;li&gt;check tensorflow&lt;/li&gt;
+&lt;li&gt;进入conda虚拟环境：conda activate test-tf 。&lt;/li&gt;
+&lt;li&gt;进入Python环境：python 。&lt;/li&gt;
+&lt;li&gt;导入tensorflow库：import tensorflow as tf 。&lt;/li&gt;
+&lt;li&gt;查看GPU版本信息，并返回GPU是否可用：tf.test.is_gpu_available() 。&lt;ol&gt;
+&lt;li&gt;返回值为True表示GPU可用。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;查看服务类型：tf.config.list_physical_devices('GPU') 。&lt;/li&gt;
+&lt;li&gt;退出python环境：exit() 。&lt;/li&gt;
+&lt;li&gt;在视频最后用代码进行测试时，使用GPU的训练时并没有专门的代码来选择或者指定GPU。而在用CPU训练时，使用了os.environ["CUDA_VISIBLE_DEVICES"] = "-1"来禁用GPU。使用典型的卷积神经网络来验证效果会比较明显。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Completed.&lt;/p&gt;
+&lt;h3&gt;Tips&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;CUDA核心数：决定训练速度。&lt;/li&gt;
+&lt;li&gt;显存大小：决定可以训练多大的模型以及训练时的最大batch size。对于较大规模的训练而言尤其敏感。&lt;/li&gt;
+&lt;li&gt;屏蔽GPU：&lt;/li&gt;
+&lt;li&gt;显卡开关：os.environ["CUDA_VISIBLE_DEVICES"] = "-1" 。&lt;/li&gt;
+&lt;li&gt;python验证代码：
+   &lt;code&gt;python
+   cpus = tf.config.list_physical_devices(devices_type='CPU')
+   tf.config.set_visible_devices(devices=cpus)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;tensorflow 2.1（该版本及以上版本） 默认安装(pip install tensorflow)已经同时支持CPU和GPU。&lt;/li&gt;
+&lt;li&gt;CPU和GPU谁快？GPU和CPU的选择和模型的类型有关。例如，如果是卷积神经网络则GTX1050胜过i7，但强化学习则不一定。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;官方建议构建配置：&lt;a href="https://tensorflow.google.cn/install/source_windows#gpu"&gt;https://tensorflow.google.cn/install/source_windows#gpu&lt;/a&gt;。可以看到CUDA能够支持的最新tensorflow的版本为2.6.0，Python的版本为3.9。所以不能安装最新的tensorflow和python版本。&lt;/p&gt;
+&lt;p&gt;20230909查询结果：
+|版本|Python|版本|编译器|构建工具|cuDNN|CUDA|
+|---|---|---|---|---|---|---|
+|tensorflow_gpu-2.6.0|3.6-3.9|MSVC| 2019|   Bazel 3.7.2|8.1|11.2|
+|tensorflow_gpu-2.5.0|3.6-3.9|MSVC| 2019|Bazel 3.7.2|8.1|11.2|
+|tensorflow_gpu-2.4.0|3.6-3.8|MSVC| 2019|Bazel 3.1.0|8.0|11.0|
+|tensorflow_gpu-2.3.0|3.5-3.8|MSVC| 2019|Bazel 3.1.0|7.6|10.1|
+|tensorflow_gpu-2.2.0|3.5-3.8|MSVC| 2019|Bazel 2.0.0|7.6|10.1|
+|tensorflow_gpu-2.1.0|3.5-3.7|MSVC| 2019|Bazel 0.27.1-0.29.1|7.6|10.1|
+|tensorflow_gpu-2.0.0|3.5-3.7|MSVC| 2017|Bazel 0.26.1|7.4|10|
+|tensorflow_gpu-1.15.0|3.5-3.7|MSVC| 2017|Bazel 0.26.1|7.4|10|
+|tensorflow_gpu-1.14.0|3.5-3.7|MSVC| 2017|Bazel 0.24.1-0.25.2|7.4|10|
+|tensorflow_gpu-1.13.0|3.5-3.7|MSVC| 2015 update 3|Bazel 0.19.0-0.21.0|7.4|10|&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;报错（20230909之前的经验，也就是没有参考reference1之前的经验）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;tensorflow的GPU环境搭建粗略步骤&lt;a href="https://www.tensorflow.org/install/gpu"&gt;https://www.tensorflow.org/install/gpu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;安装步骤说明：&lt;/li&gt;
+&lt;li&gt;首先安装服务器的驱动，也就是0. FusionServer iDriver-Win2K16-Driver-V115.zip。&lt;/li&gt;
+&lt;li&gt;安装操作系统的补丁1. windows10.0-kb4038782-x64_5cc8dccc86516830eb0b1aa030d67f482dd05af0.msu，安装了之后才能安装Nvidia的驱动。&lt;/li&gt;
+&lt;li&gt;安装Nvidia驱动2. 472.50-data-center-tesla-desktop-winserver-2019-2016-international.exe。&lt;/li&gt;
+&lt;li&gt;安装CUDA 3. cuda_11.5.0_496.13_win10.exe&lt;/li&gt;
+&lt;li&gt;将4. cudnn-windows-x86_64-8.3.2.44_cuda11.5-archive.zip中的cudnn64_8.dll文件拷贝到C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin目录下。
+   END&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当前使用的系统版本
+|编号|名称|版本|说明|
+|---|---|---|---|
+|1|windows server|2016|nvidia要求的window版本最新的只能是这个。|
+|2|GPU驱动|472.50-data-center-tesla-desktop-winserver-2019-2016-international.exe||
+|3|CUDA|11.5|下载地址&amp;lt;&amp;gt;。&lt;strong&gt;11.6版本的CUDA没有对应版本的cuDNN&lt;/strong&gt;。|
+|4|cuDNN|cudnn-windows-x86_64-8.3.2.44_cuda11.5-archive|下载地址&lt;a href="https://developer.nvidia.com/rdp/cudnn-download"&gt;https://developer.nvidia.com/rdp/cudnn-download&lt;/a&gt;。注意对应x86_64的两个windows文件都需要下载，一个是Local Installer for Windows (Exe)和Local Installer for Windows (Zip)，前面是安装cuDNN，后面的zip是用于补全部分dll文件的。|
+|5||||&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用框架时报错&lt;/p&gt;
+&lt;p&gt;```Python
+import tensorflow as tf&lt;/p&gt;
+&lt;p&gt;tf.test.is_gpu_available()&lt;/p&gt;
+&lt;p&gt;import tensorflow as tf
+print("TF version:", tf.&lt;strong&gt;version&lt;/strong&gt;)&lt;/p&gt;
+&lt;h1&gt;检测Tensorflow是否支持GPU&lt;/h1&gt;
+&lt;p&gt;print("GPU is ", "available" if tf.test.is_gpu_available() else "NOT available.")
+```&lt;/p&gt;
+&lt;p&gt;代码的时候报以下错误&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Script
+PS D:\codeSpace\test&amp;gt; &amp;amp; D:/Python310/python.exe d:/codeSpace/test/test.py
+WARNING:tensorflow:From d:\codeSpace\test\test.py:3: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+2022-02-09 15:21:51.500071: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-02-09 15:21:52.540180: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudnn64_8.dll'; dlerror: cudnn64_8.dll not found
+2022-02-09 15:21:52.540269: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1850] Cannot dlopen some GPU libraries. Please make sure the missing libraries
+mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup
+the required libraries for your platform.
+Skipping registering GPU devices...
+TF version: 2.8.0
+2022-02-09 15:21:52.550397: W tensorflow/core/common_runtime/gpu/gpu_device.cc:1850] Cannot dlopen some GPU libraries. Please make sure the missing libraries
+mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup
+the required libraries for your platform.
+Skipping registering GPU devices...
+GPU is  NOT available.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;a href="https://blog.csdn.net/wilde123/article/details/116903346"&gt;https://blog.csdn.net/wilde123/article/details/116903346&lt;/a&gt;&lt;a href="https://blog.csdn.net/qq_43203949/article/details/108550960"&gt;https://blog.csdn.net/qq_43203949/article/details/108550960&lt;/a&gt;
+解决步骤：
+    1. 在&lt;a href="https://developer.nvidia.com/rdp/cudnn-download"&gt;https://developer.nvidia.com/rdp/cudnn-download&lt;/a&gt;连接中下载对应的cudnn-windows-x86_64-8.3.2.44_cuda11.5-archive.zip文件。
+    2. 将其解压，然后将其中bin目录中的cudnn64_8.dll文件拷贝到C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin目录下即可。
+原因就是在C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin目录下缺失cudnn64_8.dll文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;推荐使用的查看GPU状态代码&lt;a href="http://t.zoukankan.com/Renyi-Fan-p-13461855.html"&gt;http://t.zoukankan.com/Renyi-Fan-p-13461855.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Python
+gpus = tf.config.list_physical_devices(device_type='GPU')
+cpus = tf.config.list_physical_devices(device_type='CPU')
+print(gpus, cpus)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这个视频好像不对。需要使用tensorflow来对矩阵进行分解。具体使用&lt;a href="https://www.bilibili.com/video/BV1Cq4y1K7yV?spm_id_from=333.337.search-card.all.click"&gt;参考视频，从第32分钟之后开始看。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;```pyhont&lt;/p&gt;
+&lt;h1&gt;在jupyter中执行的代码&lt;/h1&gt;
+&lt;h1&gt;cell_1&lt;/h1&gt;
+&lt;p&gt;!nvcc -V&lt;/p&gt;
+&lt;h1&gt;cell_2&lt;/h1&gt;
+&lt;p&gt;!nvidia-smi
+```&lt;/p&gt;
+&lt;p&gt;这两个代码执行成功之后说明cuda和python相关的环境就配置成功了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="MachineLearning"></category><category term="blog"></category><category term="TensorFlow"></category><category term="Python"></category><category term="GPU"></category></entry></feed>

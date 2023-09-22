@@ -1,7 +1,7 @@
 Title: 部署Nvidia，TensorFlow，Python开发环境
 Date: 2023-09-22
-Category: Commonknowledge
-Tags: blog,TensorFlow,Python,Nvidia,CUDA,cuDNN
+Category: MachineLearning
+Tags: blog,TensorFlow,Python,GPU
 Slug: Deploy-GPU-TensorFlow-Environment
 Author: youareeverysingleday
 
