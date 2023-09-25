@@ -98,7 +98,7 @@ Author: youareeverysingleday
 ### pelican
 
 1. 入门参考。它是使用python编译的，并且支持markdown。<https://zhuanlan.zhihu.com/p/55603083>。
-2. 重要参考2<https://zhuanlan.zhihu.com/p/614277442>。
+2. 重要参考，基本流程参考2<https://zhuanlan.zhihu.com/p/614277442>。
    1. 这个参考更详细：<https://maxwell-nc.github.io/blog/pelicanBuildBlog.html>。
    2. 这个参考有深度，包含了如何让搜索引擎搜索和Google Analytics的内容<https://www.cnblogs.com/cciejh/p/blog_building.html>。感觉Google Analytics主要用于开店的，展示不使用。
 3. 操作参考<https://jlhxxxx.github.io/pelican-github.html>。
@@ -127,8 +127,11 @@ Author: youareeverysingleday
       2. 登录bing。
       3. 使用在页面中添加标记的方式验证。修改生成的index.html，在<body>之前的<head>中添加<meta name="msvalidate.01" content="AAAA" />代码作为验证标识。让bing webmaster验证即可。
    2. google
-      1. <meta name="google-site-verification" content="EEEE" />
-9. 生成网站地图。使用的是sitemap插件。在pelicanconf.py中设置sitemap的含义如下：The SITEMAP setting must be a Python dictionary and can contain these keys:
+      1. 添加代码：
+         ```html
+         <meta name="google-site-verification" content="EEEE" />
+         ```
+9.  生成网站地图。使用的是sitemap插件。在pelicanconf.py中设置sitemap的含义如下：The SITEMAP setting must be a Python dictionary and can contain these keys:
    - format, which sets the output format of the plugin (xml or txt)
    - priorities, which is a dictionary with three keys:
       - articles, the priority for the URLs of the articles and their translations
@@ -146,5 +149,16 @@ Author: youareeverysingleday
     1. 登录到 Google Analytics，创建账号，生成新的Property。
     2. 使用 MEASUREMENT ID写入pelicanconf.py中。设置GOOGLE_ANALYTICS_ID = 'XXXXXX'变量。
     3. 修改Theme中base.html文件。添加Google Analytics中提供的js代码。
+      ```html
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{GOOGLE_ANALYTICS_ID}}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '{{GOOGLE_ANALYTICS_ID}}');
+        </script>
+      ```
     4. 设置完成，更新线上Pelican的Article，约0.5小时后可登录GA后台查看结果。
+    5. 查看使用情况的页面:<https://analytics.google.com/analytics/web/>。
 
