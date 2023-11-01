@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Coder</title><link>https://youareeverysingleday.github.io/</link><description>You are every single day.</description><lastBuildDate>Fri, 22 Sep 2023 00:00:00 +0200</lastBuildDate><item><title>部署Nvidia，TensorFlow，Python开发环境</title><link>https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html</link><description>&lt;h2&gt;Understanding&lt;/h2&gt;
+<rss version="2.0"><channel><title>Coder</title><link>https://youareeverysingleday.github.io/</link><description>You are every single day.</description><lastBuildDate>Wed, 01 Nov 2023 00:00:00 +0100</lastBuildDate><item><title>在离线环境下搭建硬件包含GPU的Ubuntu系统</title><link>https://youareeverysingleday.github.io/Build-Ubuntu-GPU-Offline.html</link><description>&lt;p&gt;Building an Ubuntu system with hardware including GPU in an offline enviroment.&lt;/p&gt;
+&lt;h2&gt;1. 总体思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用Ubuntu启动盘安装Ubuntu。&lt;/li&gt;
+&lt;li&gt;使用apt install -y按需的软件源下载。&lt;/li&gt;
+&lt;li&gt;apt-mirror实在有点坑。建议弃坑。使用apt-mirror工具制作软件包的镜像，然后让ubuntu安装相关更新。&lt;/li&gt;
+&lt;li&gt;使用dpkg制作离线包。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2. 参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;重要-ubuntu下的apt内网本地源的正确搭建。使用apt-mirror工具&lt;a href="https://www.cnblogs.com/mlwork/p/12262819.html"&gt;https …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">youareeverysingleday</dc:creator><pubDate>Wed, 01 Nov 2023 00:00:00 +0100</pubDate><guid isPermaLink="false">tag:youareeverysingleday.github.io,2023-11-01:/Build-Ubuntu-GPU-Offline.html</guid><category>MachineLearning</category><category>blog</category><category>Ubuntu</category><category>GPU</category></item><item><title>部署Nvidia，TensorFlow，Python开发环境</title><link>https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html</link><description>&lt;h2&gt;Understanding&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;CUDA是nvidia的机器学习驱动。&lt;/li&gt;
 &lt;li&gt;cuDNN相当于是CUDA在深度学习上的补丁。cuDNN其实是CUDA的一个补丁，专为深度学习运算进行优化的。&lt;/li&gt;

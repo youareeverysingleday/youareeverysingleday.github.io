@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+        <title>在离线环境下搭建硬件包含GPU的Ubuntu系统</title>
+        <meta charset="utf-8" />
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZN76F9MXF"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-MZN76F9MXF');
+        </script>
+        <link href="https://youareeverysingleday.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Full Atom Feed" />
+        <link href="https://youareeverysingleday.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="Coder Full RSS Feed" />
+        <link href="https://youareeverysingleday.github.io/feeds/machinelearning.atom.xml" type="application/atom+xml" rel="alternate" title="Coder Categories Atom Feed" />
+
+
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="./theme/gumby.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/style.css" />
+        <link rel="stylesheet" type="text/css" href="./theme/pygment.css" />
+
+        <script src="./theme/js/libs/modernizr-2.6.2.min.js"></script>
+
+
+              <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                ga('create', 'G-MZN76F9MXF', '');
+                ga('send', 'pageview');
+
+              </script>
+
+
+</head>
+
+<body id="index" class="home">
+
+
+    <div class="container">
+
+        <div class="row">
+
+          <header id="banner" class="body">
+                  <h1><a href="./">Coder <strong>You are every single day.</strong></a></h1>
+          </header><!-- /#banner -->
+
+            <div id="navigation" class="navbar row">
+              <a href="#" gumby-trigger="#navigation &gt; ul" class="toggle"><i class="icon-menu"></i></a>
+             
+              <ul class="columns">
+                <li><a href="./">Home</a></li>
+
+
+              </ul>
+            </div>
+
+<section id="content" class="body">
+
+   <div class="row">
+        <div class="eleven columns">
+
+
+            <header>
+              <h2 class="entry-title">
+                <a href="./Build-Ubuntu-GPU-Offline.html" rel="bookmark"
+                   title="Permalink to 在离线环境下搭建硬件包含GPU的Ubuntu系统">在离线环境下搭建硬件包含GPU的Ubuntu系统</a></h2>
+           
+            </header>
+            <footer class="post-info">
+              <abbr class="published" title="2023-11-01T00:00:00+01:00">
+                周三 01 十一月 2023
+              </abbr>
+              <address class="vcard author">By 
+                <a class="url fn" href="./author/youareeverysingleday.html"> youareeverysingleday</a>
+              </address>
+            </footer><!-- /.post-info -->
+            <div class="entry-content">
+              <p>Building an Ubuntu system with hardware including GPU in an offline enviroment.</p>
+<h2>1. 总体思路</h2>
+<ol>
+<li>使用Ubuntu启动盘安装Ubuntu。</li>
+<li>使用apt install -y按需的软件源下载。</li>
+<li>apt-mirror实在有点坑。建议弃坑。使用apt-mirror工具制作软件包的镜像，然后让ubuntu安装相关更新。</li>
+<li>使用dpkg制作离线包。</li>
+</ol>
+<h2>2. 参考</h2>
+<ol>
+<li>重要-ubuntu下的apt内网本地源的正确搭建。使用apt-mirror工具<a href="https://www.cnblogs.com/mlwork/p/12262819.html">https://www.cnblogs.com/mlwork/p/12262819.html</a>。这个工具下载了整个ubuntu需要更新的软件源。大约有150GB的大小，需要下载很长时间。</li>
+<li>需要详细说明。特别是mirror.list的使用。</li>
+<li>没有使用。制作少量软件源的参考。</li>
+<li><a href="https://blog.csdn.net/qq_41037945/article/details/124440867">https://blog.csdn.net/qq_41037945/article/details/124440867</a>。</li>
+<li><a href="https://zhuanlan.zhihu.com/p/346562578">https://zhuanlan.zhihu.com/p/346562578</a>。</li>
+<li>安装过程中的磁盘分区</li>
+<li>需要详细说明。特别是挂载的步骤、方式、区别。</li>
+<li>使用apt install -y和dpkg来做软件源。</li>
+<li><a href="https://blog.csdn.net/yiquan_yang/article/details/109670854">https://blog.csdn.net/yiquan_yang/article/details/109670854</a></li>
+</ol>
+<blockquote>
+<p>命令中的gedit就是ubuntu中的TextEditor工具。</p>
+</blockquote>
+<h3>2.1 sources.list文件格式说明</h3>
+<p>参考: <a href="https://www.cnblogs.com/yahuian/p/apt-sources-list.html">https://www.cnblogs.com/yahuian/p/apt-sources-list.html</a></p>
+<p><img alt="sources.list文件格式" src="../images/sourceslist_format.png" title="sources.list文件格式"></p>
+<ol>
+<li>第一部分
+   deb 表示二进制可执行文件
+   deb-src 表示包的源代码</li>
+<li>第二部分：URL仓库地址。一定要使用https的软件源地址。</li>
+<li>第三部分：发行版代号，ubuntu 20.04 为 focal</li>
+</ol>
+<p><code>shell
+   ubuntu@VM-0-12-ubuntu:~$ lsb_release -a
+   No LSB modules are available.
+   Distributor ID: Ubuntu
+   Description:    Ubuntu 20.04.1 LTS
+   Release:        20.04
+   Codename:       focal</code></p>
+<p>security 重要的安全更新
+   updates 建议的更新
+   proposed pre-released 更新
+   backports 不支持的更新（遇到问题不一定有人修，而且可能导致系统出其他问题）
+   <strong>一般情况下，一般选择前2个即可</strong>。
+4. 第四个部分：是按照软件的自由度来区分的。一般情况下，4个全部选择即可。
+   main 包是免费的/开源的，并受 ubuntu 官方的支持
+   restricted 包含各种设备的专用驱动程序
+   universe 包是免费的/开源的，由社区支持
+   multiverse 由于法律/版权问题，这些软件包受到限制
+5. 使用 sed 快速替换</p>
+<p><code>shell
+   sed -i 's/被替换的内容/要替换成的内容/' file
+   sudo sed -i 's/archive.ubuntu/mirrors.aliyun/' /etc/apt/sources.list</code></p>
+<h2>3. 使用apt install -y和dpkg来做软件源</h2>
+<p>步骤如下：</p>
+<p>主要流程参考：<a href="https://blog.csdn.net/magic_guo/article/details/129148074">https://blog.csdn.net/magic_guo/article/details/129148074</a>。</p>
+<h3>3.1 下载ubuntu软件和python依赖包</h3>
+<ol>
+<li>
+<p>ubuntu软件源</p>
+</li>
+<li>
+<p>需要下载的软件如下：</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>软件</th>
+<th>说明</th>
+<th>参考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1必须</td>
+<td>openssh-server</td>
+<td>ubuntu上的SSH服务。</td>
+<td>&lt;&gt;</td>
+</tr>
+<tr>
+<td>2必须</td>
+<td>sysstat</td>
+<td>主要用途是观察服务负载，比如CPU和内存的占用率、网络的使用率以及磁盘写入和读取速度等。</td>
+<td><a href="https://blog.csdn.net/sixisixsix/article/details/106430379">https://blog.csdn.net/sixisixsix/article/details/106430379</a></td>
+</tr>
+<tr>
+<td>3必须</td>
+<td>net-tools</td>
+<td>网络工具集，包含ifconfig命令等。</td>
+<td>&lt;&gt;</td>
+</tr>
+<tr>
+<td>4必须</td>
+<td>python3-pip</td>
+<td>python中的pip管理工具。</td>
+<td>&lt;&gt;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>gawk</td>
+<td>主要就是用来在大的数据中提取中自己需要的元素（对文本数据的每行进行处理），然后将其格式化，使得重要的数据更易于阅读。</td>
+<td><a href="https://blog.csdn.net/weixin_42119041/article/details/108735906">https://blog.csdn.net/weixin_42119041/article/details/108735906</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>bc</td>
+<td>bc 命令是任意精度计算器语言，通常在linux下当计算器用。</td>
+<td><a href="https://www.runoob.com/linux/linux-comm-bc.html">https://www.runoob.com/linux/linux-comm-bc.html</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>unzip</td>
+<td>zip文件压缩、解压缩工具。</td>
+<td><a href="https://www.cnblogs.com/cy0628/p/13903990.html">https://www.cnblogs.com/cy0628/p/13903990.html</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>wget</td>
+<td>下载文件的工具。</td>
+<td><a href="https://blog.csdn.net/feng98ren/article/details/102505662">https://blog.csdn.net/feng98ren/article/details/102505662</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>iptables-persistent</td>
+<td>暂时用不到。iptables是一个linux下的防火墙工具，它能帮助我们基于规则进行网络流量控制。</td>
+<td><a href="https://zhuanlan.zhihu.com/p/574057147">https://zhuanlan.zhihu.com/p/574057147</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>psmisc</td>
+<td>暂时用不到。</td>
+<td>&lt;&gt;</td>
+</tr>
+<tr>
+<td>11</td>
+<td>docker-compose</td>
+<td>暂时用不到。</td>
+<td>&lt;&gt;</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>下载之前一定使用一次apt-get upgrade和apt-get update命令。用于更新现有的软件和软件源信息。</li>
+<li>下载之前先进入目录"/var/cache/apt/archives"下。</li>
+<li>
+<p>因为必须下载的软件并不多，所以使用逐个下载的方式下载，并且下载相关依赖。使用的下载命令如下：</p>
+<p><code>shell
+  apt-get download $(apt-rdepends openssh-server | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends sysstat | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends net-tools | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends python3-pip | grep -v "^ " | sed 's/debconf-2.0/debconf/g')</code>
+   5. 直接下载时会出现如下报错：</p>
+<p><code>text
+  Download is performed unsandboxed as root as file '/home/[Account]/adduser_3.118ubuntu2_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+  ......</code></p>
+<p>解决方法参考：<a href="https://blog.csdn.net/bigbaojian/article/details/131117477">https://blog.csdn.net/bigbaojian/article/details/131117477</a>。
+  使用如下命令解决，注意后面的目录是apt-get download的文件目录：</p>
+<p><code>shell
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/</code></p>
+<p>具体原因解释为：新版本apt-get程序开始使用_apt用户确安全。apt程序一般使用_apt用户进行软件包下载，这个提示是_apt用户没有相应文件和目录的写权限，此时文件为红色，非可执行状态。通过如下命令确保_apt用户对/var/cache/apt/archives/partial/目录及其内含的文件具备写入权限。在Ubuntu中，“sandbox user”（沙盒用户）是指一个受限制的用户账户，用于运行不受信任的程序或应用程序。沙盒用户是为了增加系统安全性而设计的，它们被限制在一个受控的环境中，无法访问敏感文件或系统资源。当你运行一个程序时，尤其是来自不受信任的来源或具有潜在安全风险的应用程序时，将其运行在沙盒用户账户下可以提供额外的保护。沙盒用户通常被配置为拥有较少的权限，限制其对系统文件和设置的访问权限。这样，即使程序被攻击或存在漏洞，攻击者也无法访问系统的关键部分。通过将程序运行在沙盒用户账户下，可以减轻潜在的安全风险，保护系统和用户的数据免受恶意软件或攻击的影响。</p>
+<p>注意：<strong>此后apt download生效，但是仅一次</strong>。每次使用4中的命令之前都需要运行一次。最终的脚本如下：</p>
+<p><code>shell
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends openssh-server | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends sysstat | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends net-tools | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends python3-pip | grep -v "^ " | sed 's/debconf-2.0/debconf/g')</code>
+2. python依赖包
+   注意现在时online环境，在使用pip之前，ubuntu必须已经安装了python3-pip软件。</p>
+</li>
+<li>
+<p>安装pip。</p>
+<p><code>shell
+  apt-get install python3-pip</code>
+   2. 要求代码所需的所有依赖包已经使用pip install命令下载完毕。
+   3. 导出python依赖包清单：</p>
+<p><code>shell
+  pip freeze &gt;requirements.txt</code>
+   4. 将依赖包下载到指定的文件夹。</p>
+<p><code>shell
+  pip download -r [path of Requirement.txt] -d [RequirementPath]</code></p>
+<p>path of Requirement.txt: requirement.txt的保存路径。
+  RequirementPathPath: 将requirements.txt所在路径。</p>
+<p>示例：</p>
+<p><code>shell
+  pip download -r requirements.txt -d /home/[account]/PythonDependencies</code></p>
+<p>在下载的过程中绝大多数情况下会报两种错误：1. 某种依赖包无法下载或者不存在。解决方法是删除requirements.txt中对应的依赖包的列，然后重新运行该命令即可。原因：在下载的过程中由于ubuntu上已经安装有python 3.8而且已经安装了部分与ubuntu直接相关的python依赖包。也就是说offline环境中和online环境中的依赖包已经存在并且版本也一致。
+  2. 某种依赖包的版本不匹配。按照报错中的提示手动调整requirements.txt对应依赖包的版本号，然后继续尝试即可。一般情况下调整为提示所需范围的最新版本即可。</p>
+</li>
+</ol>
+<h3>3.2 压缩</h3>
+<p>将ubuntu软件压缩打包。python所需依赖包可以不用压缩。</p>
+<ol>
+<li>进入"/var/cache/apt/"下。确保其下有"/var/cache/apt/archives"目录。
+   <code>shell
+   cd /var/cache/apt/</code></li>
+<li>将"/var/cache/apt/archives"目录压缩。
+   <code>shell
+   tar -czvf archives.tar.gz archives</code></li>
+</ol>
+<h3>3.3 拷贝到离线环境中</h3>
+<p>如题。</p>
+<h3>3.4 解压缩</h3>
+<p>对压缩的文件进行解压缩。</p>
+<ol>
+<li>进入所需要存放ubuntu软件的目录。</li>
+<li>解压缩。使用命令如下：
+   <code>shell
+   tar -zxvf archives.tar.gz</code></li>
+<li>进入解压缩生成的当前路径下的archives文件夹
+   <code>shell
+   cd archives</code></li>
+</ol>
+<h3>3.5 首先安装ubuntu的软件源（其中一定要包含pip的包）</h3>
+<p>安装所有ubuntu软件。注意在offline环境中安装了pip。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*
+</code></pre></div>
+
+<h3>3.5 安装python依赖包</h3>
+<p>将requirements.txt和python依赖包放在同一目录下。使用如下命令安装所有python依赖包：</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>--no-index<span class="w"> </span>--find-links<span class="o">=[</span>PythonDependenciesPath<span class="o">]</span><span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+            </div><!-- /.entry-content -->
+
+
+        </div><!-- /.eleven.columns -->
+
+<div class="three columns">
+
+  <h4>Pages</h4>
+
+  <ul>
+
+  
+  <h4>Categories</h4>
+  <ul class="blank">
+    <li><a href="./category/commonknowledge.html">Commonknowledge</a></li>
+    <li><a href="./category/machinelearning.html">MachineLearning</a></li>
+    <li><a href="./category/mateuniverse.html">MateUniverse</a></li>
+    <li><a href="./category/physics.html">Physics</a></li>
+  </ul>
+
+
+<h4>Tags</h4>
+	<ul class="blank">
+	    <li class="tag-4"><a href="./tag/physics.html">Physics</a></li>
+	    <li class="tag-3"><a href="./tag/gpu.html">GPU</a></li>
+	    <li class="tag-4"><a href="./tag/latex.html">LaTex</a></li>
+	    <li class="tag-4"><a href="./tag/ubuntu.html">Ubuntu</a></li>
+	    <li class="tag-4"><a href="./tag/pelican.html">pelican</a></li>
+	    <li class="tag-3"><a href="./tag/python.html">Python</a></li>
+	    <li class="tag-4"><a href="./tag/linux.html">Linux</a></li>
+	    <li class="tag-4"><a href="./tag/tensorflow.html">TensorFlow</a></li>
+	    <li class="tag-4"><a href="./tag/metauniverse.html">MetaUniverse</a></li>
+	    <li class="tag-1"><a href="./tag/blog.html">blog</a></li>
+</ul>
+
+
+<nav class="widget">
+  <h4>Social</h4>
+  <ul class="blank">
+    <li><a href="https://youareeverysingleday.github.io">GitHub</a></li>
+    <li><a href="#">Another social link</a></li>
+  </ul>
+</nav>
+
+</div> </div><!-- /.row -->
+
+
+</section>
+
+       </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+       <div class="container.nopad bg">
+
+    
+        <footer id="credits" class="row">
+          <div class="seven columns left-center">
+
+                   <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>.
+                    <br />
+                    Based on the <a target="_blank" href="http://gumbyframework.com">Gumby Framework</a>
+                    </address>
+          </div>
+
+
+          <div class="seven columns">
+            <div class="row">
+              <ul class="socbtns">
+
+                <li><div class="btn primary"><a href="https://youareeverysingleday.github.io" target="_blank">Github</a></div></li>
+
+
+
+
+              </ul>
+            </div>
+          </div>
+        </footer>
+
+    </div>
+
+
+  <script src="./theme/js/libs/jquery-1.9.1.min.js"></script>
+  <script src="./theme/js/libs/gumby.min.js"></script>
+  <script src="./theme/js/plugins.js"></script>
+</body>
+</html>

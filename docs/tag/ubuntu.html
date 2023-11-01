@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-        <title>Coder - pelican</title>
+        <title>Coder - Ubuntu</title>
         <meta charset="utf-8" />
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZN76F9MXF"></script>
@@ -72,43 +72,34 @@
         <div class="eleven columns">
                  <ol id="post-list">
                         <li><article class="hentry">
-                                <header> <h2 class="entry-title"><a href="../pelican-brochure.html" rel="bookmark" title="Permalink to 如何使用Pelican创建一个博客">如何使用Pelican创建一个博客</a></h2> </header>
+                                <header> <h2 class="entry-title"><a href="../Build-Ubuntu-GPU-Offline.html" rel="bookmark" title="Permalink to 在离线环境下搭建硬件包含GPU的Ubuntu系统">在离线环境下搭建硬件包含GPU的Ubuntu系统</a></h2> </header>
                                 <footer class="post-info">
-                                    <abbr class="published" title="2023-08-11T00:00:00+02:00"> 周五 11 八月 2023 </abbr>
+                                    <abbr class="published" title="2023-11-01T00:00:00+01:00"> 周三 01 十一月 2023 </abbr>
                                     <address class="vcard author">By 
                                     <a class="url fn" href="../author/youareeverysingleday.html"> youareeverysingleday</a>
                                     </address>
                                 </footer><!-- /.post-info -->
-                                <div class="entry-content"> <h2>experience</h2>
+                                <div class="entry-content"> <p>Building an Ubuntu system with hardware including GPU in an offline enviroment.</p>
+<h2>1. 总体思路</h2>
 <ol>
-<li>常用命令，</li>
-<li>命令参考<a href="https://www.osgeo.cn/pelican/">https://www.osgeo.cn/pelican/</a>。</li>
-<li>
-<p>流程参考<a href="https://zhuanlan.zhihu.com/p/614277442">https://zhuanlan.zhihu.com/p/614277442</a>。</p>
-<table>
-<thead>
-<tr>
-<th>顺序</th>
-<th>命令</th>
-<th>作用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>pelican-quickstart</td>
-<td>填写pelican基本信息。后期可以通过pelicanconf.py修改。</td>
-<td>进入页面目 …</td></tr></tbody></table></li></ol> </div><!-- /.entry-content -->
+<li>使用Ubuntu启动盘安装Ubuntu。</li>
+<li>使用apt install -y按需的软件源下载。</li>
+<li>apt-mirror实在有点坑。建议弃坑。使用apt-mirror工具制作软件包的镜像，然后让ubuntu安装相关更新。</li>
+<li>使用dpkg制作离线包。</li>
+</ol>
+<h2>2. 参考</h2>
+<ol>
+<li>重要-ubuntu下的apt内网本地源的正确搭建。使用apt-mirror工具<a href="https://www.cnblogs.com/mlwork/p/12262819.html">https …</a></li></ol> </div><!-- /.entry-content -->
 
-                                <div class="medium primary btn"><a href="../pelican-brochure.html" rel="bookmark" title="Permalink to 如何使用Pelican创建一个博客">Read more <i class="icon-arrow-right"></i></a></div>
+                                <div class="medium primary btn"><a href="../Build-Ubuntu-GPU-Offline.html" rel="bookmark" title="Permalink to 在离线环境下搭建硬件包含GPU的Ubuntu系统">Read more <i class="icon-arrow-right"></i></a></div>
 
 
 
                                 <div class="row tag-row">
                                         <span>Tagged as : </span>
                                             <a class="danger label" href="../tag/blog.html">blog</a>
-                                            <a class="danger label" href="../tag/pelican.html">pelican</a>
+                                            <a class="danger label" href="../tag/ubuntu.html">Ubuntu</a>
+                                            <a class="danger label" href="../tag/gpu.html">GPU</a>
                                 </div>
 
 

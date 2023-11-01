@@ -1,5 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Coder - youareeverysingleday</title><link href="https://youareeverysingleday.github.io/" rel="alternate"></link><link href="https://youareeverysingleday.github.io/feeds/youareeverysingleday.atom.xml" rel="self"></link><id>https://youareeverysingleday.github.io/</id><updated>2023-09-22T00:00:00+02:00</updated><subtitle>You are every single day.</subtitle><entry><title>部署Nvidia，TensorFlow，Python开发环境</title><link href="https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html" rel="alternate"></link><published>2023-09-22T00:00:00+02:00</published><updated>2023-09-22T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-09-22:/Deploy-GPU-TensorFlow-Environment.html</id><summary type="html">&lt;h2&gt;Understanding&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Coder - youareeverysingleday</title><link href="https://youareeverysingleday.github.io/" rel="alternate"></link><link href="https://youareeverysingleday.github.io/feeds/youareeverysingleday.atom.xml" rel="self"></link><id>https://youareeverysingleday.github.io/</id><updated>2023-11-01T00:00:00+01:00</updated><subtitle>You are every single day.</subtitle><entry><title>在离线环境下搭建硬件包含GPU的Ubuntu系统</title><link href="https://youareeverysingleday.github.io/Build-Ubuntu-GPU-Offline.html" rel="alternate"></link><published>2023-11-01T00:00:00+01:00</published><updated>2023-11-01T00:00:00+01:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-11-01:/Build-Ubuntu-GPU-Offline.html</id><summary type="html">&lt;p&gt;Building an Ubuntu system with hardware including GPU in an offline enviroment.&lt;/p&gt;
+&lt;h2&gt;1. 总体思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用Ubuntu启动盘安装Ubuntu。&lt;/li&gt;
+&lt;li&gt;使用apt install -y按需的软件源下载。&lt;/li&gt;
+&lt;li&gt;apt-mirror实在有点坑。建议弃坑。使用apt-mirror工具制作软件包的镜像，然后让ubuntu安装相关更新。&lt;/li&gt;
+&lt;li&gt;使用dpkg制作离线包。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2. 参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;重要-ubuntu下的apt内网本地源的正确搭建。使用apt-mirror工具&lt;a href="https://www.cnblogs.com/mlwork/p/12262819.html"&gt;https …&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;p&gt;Building an Ubuntu system with hardware including GPU in an offline enviroment.&lt;/p&gt;
+&lt;h2&gt;1. 总体思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用Ubuntu启动盘安装Ubuntu。&lt;/li&gt;
+&lt;li&gt;使用apt install -y按需的软件源下载。&lt;/li&gt;
+&lt;li&gt;apt-mirror实在有点坑。建议弃坑。使用apt-mirror工具制作软件包的镜像，然后让ubuntu安装相关更新。&lt;/li&gt;
+&lt;li&gt;使用dpkg制作离线包。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2. 参考&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;重要-ubuntu下的apt内网本地源的正确搭建。使用apt-mirror工具&lt;a href="https://www.cnblogs.com/mlwork/p/12262819.html"&gt;https://www.cnblogs.com/mlwork/p/12262819.html&lt;/a&gt;。这个工具下载了整个ubuntu需要更新的软件源。大约有150GB的大小，需要下载很长时间。&lt;/li&gt;
+&lt;li&gt;需要详细说明。特别是mirror.list的使用。&lt;/li&gt;
+&lt;li&gt;没有使用。制作少量软件源的参考。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.csdn.net/qq_41037945/article/details/124440867"&gt;https://blog.csdn.net/qq_41037945/article/details/124440867&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zhuanlan.zhihu.com/p/346562578"&gt;https://zhuanlan.zhihu.com/p/346562578&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;安装过程中的磁盘分区&lt;/li&gt;
+&lt;li&gt;需要详细说明。特别是挂载的步骤、方式、区别。&lt;/li&gt;
+&lt;li&gt;使用apt install -y和dpkg来做软件源。&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.csdn.net/yiquan_yang/article/details/109670854"&gt;https://blog.csdn.net/yiquan_yang/article/details/109670854&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;命令中的gedit就是ubuntu中的TextEditor工具。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;2.1 sources.list文件格式说明&lt;/h3&gt;
+&lt;p&gt;参考: &lt;a href="https://www.cnblogs.com/yahuian/p/apt-sources-list.html"&gt;https://www.cnblogs.com/yahuian/p/apt-sources-list.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="sources.list文件格式" src="../images/sourceslist_format.png" title="sources.list文件格式"&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一部分
+   deb 表示二进制可执行文件
+   deb-src 表示包的源代码&lt;/li&gt;
+&lt;li&gt;第二部分：URL仓库地址。一定要使用https的软件源地址。&lt;/li&gt;
+&lt;li&gt;第三部分：发行版代号，ubuntu 20.04 为 focal&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;shell
+   ubuntu@VM-0-12-ubuntu:~$ lsb_release -a
+   No LSB modules are available.
+   Distributor ID: Ubuntu
+   Description:    Ubuntu 20.04.1 LTS
+   Release:        20.04
+   Codename:       focal&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;security 重要的安全更新
+   updates 建议的更新
+   proposed pre-released 更新
+   backports 不支持的更新（遇到问题不一定有人修，而且可能导致系统出其他问题）
+   &lt;strong&gt;一般情况下，一般选择前2个即可&lt;/strong&gt;。
+4. 第四个部分：是按照软件的自由度来区分的。一般情况下，4个全部选择即可。
+   main 包是免费的/开源的，并受 ubuntu 官方的支持
+   restricted 包含各种设备的专用驱动程序
+   universe 包是免费的/开源的，由社区支持
+   multiverse 由于法律/版权问题，这些软件包受到限制
+5. 使用 sed 快速替换&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+   sed -i 's/被替换的内容/要替换成的内容/' file
+   sudo sed -i 's/archive.ubuntu/mirrors.aliyun/' /etc/apt/sources.list&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;3. 使用apt install -y和dpkg来做软件源&lt;/h2&gt;
+&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;p&gt;主要流程参考：&lt;a href="https://blog.csdn.net/magic_guo/article/details/129148074"&gt;https://blog.csdn.net/magic_guo/article/details/129148074&lt;/a&gt;。&lt;/p&gt;
+&lt;h3&gt;3.1 下载ubuntu软件和python依赖包&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;ubuntu软件源&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;需要下载的软件如下：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;编号&lt;/th&gt;
+&lt;th&gt;软件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;参考&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1必须&lt;/td&gt;
+&lt;td&gt;openssh-server&lt;/td&gt;
+&lt;td&gt;ubuntu上的SSH服务。&lt;/td&gt;
+&lt;td&gt;&amp;lt;&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2必须&lt;/td&gt;
+&lt;td&gt;sysstat&lt;/td&gt;
+&lt;td&gt;主要用途是观察服务负载，比如CPU和内存的占用率、网络的使用率以及磁盘写入和读取速度等。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://blog.csdn.net/sixisixsix/article/details/106430379"&gt;https://blog.csdn.net/sixisixsix/article/details/106430379&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3必须&lt;/td&gt;
+&lt;td&gt;net-tools&lt;/td&gt;
+&lt;td&gt;网络工具集，包含ifconfig命令等。&lt;/td&gt;
+&lt;td&gt;&amp;lt;&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4必须&lt;/td&gt;
+&lt;td&gt;python3-pip&lt;/td&gt;
+&lt;td&gt;python中的pip管理工具。&lt;/td&gt;
+&lt;td&gt;&amp;lt;&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;gawk&lt;/td&gt;
+&lt;td&gt;主要就是用来在大的数据中提取中自己需要的元素（对文本数据的每行进行处理），然后将其格式化，使得重要的数据更易于阅读。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://blog.csdn.net/weixin_42119041/article/details/108735906"&gt;https://blog.csdn.net/weixin_42119041/article/details/108735906&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;bc&lt;/td&gt;
+&lt;td&gt;bc 命令是任意精度计算器语言，通常在linux下当计算器用。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.runoob.com/linux/linux-comm-bc.html"&gt;https://www.runoob.com/linux/linux-comm-bc.html&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;unzip&lt;/td&gt;
+&lt;td&gt;zip文件压缩、解压缩工具。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://www.cnblogs.com/cy0628/p/13903990.html"&gt;https://www.cnblogs.com/cy0628/p/13903990.html&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;wget&lt;/td&gt;
+&lt;td&gt;下载文件的工具。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://blog.csdn.net/feng98ren/article/details/102505662"&gt;https://blog.csdn.net/feng98ren/article/details/102505662&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;iptables-persistent&lt;/td&gt;
+&lt;td&gt;暂时用不到。iptables是一个linux下的防火墙工具，它能帮助我们基于规则进行网络流量控制。&lt;/td&gt;
+&lt;td&gt;&lt;a href="https://zhuanlan.zhihu.com/p/574057147"&gt;https://zhuanlan.zhihu.com/p/574057147&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;psmisc&lt;/td&gt;
+&lt;td&gt;暂时用不到。&lt;/td&gt;
+&lt;td&gt;&amp;lt;&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;docker-compose&lt;/td&gt;
+&lt;td&gt;暂时用不到。&lt;/td&gt;
+&lt;td&gt;&amp;lt;&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;下载之前一定使用一次apt-get upgrade和apt-get update命令。用于更新现有的软件和软件源信息。&lt;/li&gt;
+&lt;li&gt;下载之前先进入目录"/var/cache/apt/archives"下。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;因为必须下载的软件并不多，所以使用逐个下载的方式下载，并且下载相关依赖。使用的下载命令如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  apt-get download $(apt-rdepends openssh-server | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends sysstat | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends net-tools | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  apt-get download $(apt-rdepends python3-pip | grep -v "^ " | sed 's/debconf-2.0/debconf/g')&lt;/code&gt;
+   5. 直接下载时会出现如下报错：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;text
+  Download is performed unsandboxed as root as file '/home/[Account]/adduser_3.118ubuntu2_all.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+  ......&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解决方法参考：&lt;a href="https://blog.csdn.net/bigbaojian/article/details/131117477"&gt;https://blog.csdn.net/bigbaojian/article/details/131117477&lt;/a&gt;。
+  使用如下命令解决，注意后面的目录是apt-get download的文件目录：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;具体原因解释为：新版本apt-get程序开始使用_apt用户确安全。apt程序一般使用_apt用户进行软件包下载，这个提示是_apt用户没有相应文件和目录的写权限，此时文件为红色，非可执行状态。通过如下命令确保_apt用户对/var/cache/apt/archives/partial/目录及其内含的文件具备写入权限。在Ubuntu中，“sandbox user”（沙盒用户）是指一个受限制的用户账户，用于运行不受信任的程序或应用程序。沙盒用户是为了增加系统安全性而设计的，它们被限制在一个受控的环境中，无法访问敏感文件或系统资源。当你运行一个程序时，尤其是来自不受信任的来源或具有潜在安全风险的应用程序时，将其运行在沙盒用户账户下可以提供额外的保护。沙盒用户通常被配置为拥有较少的权限，限制其对系统文件和设置的访问权限。这样，即使程序被攻击或存在漏洞，攻击者也无法访问系统的关键部分。通过将程序运行在沙盒用户账户下，可以减轻潜在的安全风险，保护系统和用户的数据免受恶意软件或攻击的影响。&lt;/p&gt;
+&lt;p&gt;注意：&lt;strong&gt;此后apt download生效，但是仅一次&lt;/strong&gt;。每次使用4中的命令之前都需要运行一次。最终的脚本如下：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends openssh-server | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends sysstat | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends net-tools | grep -v "^ " | sed 's/debconf-2.0/debconf/g')
+  sudo chown -Rv _apt:root /var/cache/apt/archives/
+  sudo chmod -Rv 700 /var/cache/apt/archives/
+  apt-get download $(apt-rdepends python3-pip | grep -v "^ " | sed 's/debconf-2.0/debconf/g')&lt;/code&gt;
+2. python依赖包
+   注意现在时online环境，在使用pip之前，ubuntu必须已经安装了python3-pip软件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装pip。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  apt-get install python3-pip&lt;/code&gt;
+   2. 要求代码所需的所有依赖包已经使用pip install命令下载完毕。
+   3. 导出python依赖包清单：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  pip freeze &amp;gt;requirements.txt&lt;/code&gt;
+   4. 将依赖包下载到指定的文件夹。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  pip download -r [path of Requirement.txt] -d [RequirementPath]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;path of Requirement.txt: requirement.txt的保存路径。
+  RequirementPathPath: 将requirements.txt所在路径。&lt;/p&gt;
+&lt;p&gt;示例：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;shell
+  pip download -r requirements.txt -d /home/[account]/PythonDependencies&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在下载的过程中绝大多数情况下会报两种错误：1. 某种依赖包无法下载或者不存在。解决方法是删除requirements.txt中对应的依赖包的列，然后重新运行该命令即可。原因：在下载的过程中由于ubuntu上已经安装有python 3.8而且已经安装了部分与ubuntu直接相关的python依赖包。也就是说offline环境中和online环境中的依赖包已经存在并且版本也一致。
+  2. 某种依赖包的版本不匹配。按照报错中的提示手动调整requirements.txt对应依赖包的版本号，然后继续尝试即可。一般情况下调整为提示所需范围的最新版本即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;3.2 压缩&lt;/h3&gt;
+&lt;p&gt;将ubuntu软件压缩打包。python所需依赖包可以不用压缩。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入"/var/cache/apt/"下。确保其下有"/var/cache/apt/archives"目录。
+   &lt;code&gt;shell
+   cd /var/cache/apt/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将"/var/cache/apt/archives"目录压缩。
+   &lt;code&gt;shell
+   tar -czvf archives.tar.gz archives&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;3.3 拷贝到离线环境中&lt;/h3&gt;
+&lt;p&gt;如题。&lt;/p&gt;
+&lt;h3&gt;3.4 解压缩&lt;/h3&gt;
+&lt;p&gt;对压缩的文件进行解压缩。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入所需要存放ubuntu软件的目录。&lt;/li&gt;
+&lt;li&gt;解压缩。使用命令如下：
+   &lt;code&gt;shell
+   tar -zxvf archives.tar.gz&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;进入解压缩生成的当前路径下的archives文件夹
+   &lt;code&gt;shell
+   cd archives&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;3.5 首先安装ubuntu的软件源（其中一定要包含pip的包）&lt;/h3&gt;
+&lt;p&gt;安装所有ubuntu软件。注意在offline环境中安装了pip。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;sudo&lt;span class="w"&gt; &lt;/span&gt;dpkg&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;3.5 安装python依赖包&lt;/h3&gt;
+&lt;p&gt;将requirements.txt和python依赖包放在同一目录下。使用如下命令安装所有python依赖包：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;pip&lt;span class="w"&gt; &lt;/span&gt;install&lt;span class="w"&gt; &lt;/span&gt;--no-index&lt;span class="w"&gt; &lt;/span&gt;--find-links&lt;span class="o"&gt;=[&lt;/span&gt;PythonDependenciesPath&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-r&lt;span class="w"&gt; &lt;/span&gt;requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="MachineLearning"></category><category term="blog"></category><category term="Ubuntu"></category><category term="GPU"></category></entry><entry><title>部署Nvidia，TensorFlow，Python开发环境</title><link href="https://youareeverysingleday.github.io/Deploy-GPU-TensorFlow-Environment.html" rel="alternate"></link><published>2023-09-22T00:00:00+02:00</published><updated>2023-09-22T00:00:00+02:00</updated><author><name>youareeverysingleday</name></author><id>tag:youareeverysingleday.github.io,2023-09-22:/Deploy-GPU-TensorFlow-Environment.html</id><summary type="html">&lt;h2&gt;Understanding&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;CUDA是nvidia的机器学习驱动。&lt;/li&gt;
 &lt;li&gt;cuDNN相当于是CUDA在深度学习上的补丁。cuDNN其实是CUDA的一个补丁，专为深度学习运算进行优化的。&lt;/li&gt;
